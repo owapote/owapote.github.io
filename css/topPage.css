@@ -1,9 +1,26 @@
 @charset "UTF-8";
+/*-----------*/
+/*汎用タグ設定*/
+/*-----------*/
 
 /*リセットCSS*/
 h1,h2,h3,h4,h5,h6,p,ul,li{
-    margin:0;
-    padding:0;
+    margin:  0;
+    padding: 0;
+}
+
+body{
+    margin:  0;
+    padding: 0;
+    font-family: Noto Sans Japanese;
+    font-size: 16px;
+    transition: 1s;
+}
+
+h1{
+    font-size: 20px;
+    color:chocolate;
+    transition: 1s;
 }
 
 p{
@@ -14,6 +31,14 @@ p{
     background-color: antiquewhite;
     overflow: hidden;
     white-space: pre-line;  /*『/n』での改行OK*/
+    transition: 1s;
+}
+
+/*---------------*/
+/*ダークモード設定*/
+/*---------------*/
+.darkMode header h1{
+    color: white;
 }
 
 .darkMode p{
@@ -25,38 +50,55 @@ p{
     overflow: hidden;
 }
 
-header {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+/*--------*/
+/*ヘッダー*/
+/*--------*/
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
     color:brown;
     background-color: bisque;
     overflow: hidden;
+    transition: 1s;
 }
 
-#headerUniqueButton {
+header h1{
+    margin-left: 10px;
+    font-size: 32px;
+    color:chocolate;
+    float: right;
+}
+
+#headerLogoAndTitle{
+    display: block;
+    float: left;
+}
+
+#headerUniqueButton{
     display: flex;
     justify-content:flex-end;
     gap: 10px;
     cursor: pointer;
 }
 
-.darkMode {
+.darkMode{
     background-color: black;
     color: silver;
+    transition: 0.5s;
 }
 
-.darkMode header {
+.darkMode header{
     background-color: midnightblue;
     color: #ddd;
 }
 
-#headerBannerImage {
-    border-top: solid;
-    border-bottom: solid;
-    border-left: solid;
-    border-right: solid;
+#headerBannerImage{
+    border: solid 5px #ccc;
     background-color: #fff;
 }
 
@@ -68,16 +110,30 @@ header {
     height: auto;
 }
 
-#languageSelector {
+#languageSelector{
+    height: 34px;
+    width: 80px;
+    padding-left: 5px;
     border: 2px solid black;
     border-radius: 100px;
+    
+    /*標準の矢印を消す*/
+    -webkit-appearance: none;
+    appearance: none;
+    
+    /*オリジナルの矢印にする*/
+    background-image: url(./../image/icon/dorpDownArrow_light.svg);
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
 }
 
-#languageSelector.darkMode {
+.darkMode #languageSelector{
     border: 2px solid white;
+    background-image: url(./../image/icon/dorpDownArrow_night.svg);
 }
 
-#colorThemeToggleButton {
+#colorThemeToggleButton{
     z-index: 0;
     position: relative;
     display: block;
@@ -90,29 +146,73 @@ header {
     transition: 0.3s;
 }
 
-#colorThemeToggleButton::after {
-    content: url(./../image/icon/dayMode.png);
+#colorThemeToggleButton::after{
+    content: url(./../image/icon/lightMode.svg);
     padding-top: 4px;
     position: absolute;
     top: 50%;
-    left: 6px;
-    width: 25px;
-    height: 21px;
+    left: 5px;
+    width: 24px;
+    height: 20px;
     border-radius: 100px;
     transform: translateY(-50%);
     background-color: #fff;
     transition: 0.3s;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 1);
 }
 
-#colorThemeToggleButton.is-night {
+#colorThemeToggleButton.is-night{
     border: 2px solid white;
     background-image: linear-gradient(90deg, mediumpurple, blue);
     background-color:mediumpurple;
 }
 
-#colorThemeToggleButton.is-night::after {
-    content: url(./../image/icon/nightMode.png);
-    box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+#colorThemeToggleButton.is-night::after{
+    content: url(./../image/icon/nightMode.svg);
+    box-shadow: 0 1px 4px rgba(255, 255, 255, 1);
     left: calc(100% - 30px);
+}
+
+/*-------------*/
+/*ナビゲーション*/
+/*-------------*/
+nav ul{
+    border-top:    solid 5px #ccc;
+    list-style-type:none;
+    display: flex;
+}
+
+nav li{
+    width: 160px;
+    height: 60px;
+}
+
+nav a{
+    display: block;
+    line-height: 60px;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+    background-color: lemonchiffon;
+    transition: 0.5s;
+}
+
+nav a:hover{
+    font-weight: bold;
+    background-color: mediumaquamarine;
+}
+
+.darkMode nav a{
+    display: block;
+    line-height: 60px;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+    background-color:powderblue;
+    transition: 0.5s;
+}
+
+.darkMode nav a:hover{
+    font-weight: bold;
+    background-color:lightskyblue;
 }
