@@ -17,32 +17,13 @@
     </script>
 </head>
 <body class="preload">
-    <script>console.log("");</script>
-    <div id="popupOverlay">
-
-    </div>
-    <header>
-        <div id="headerLogoAndTitle">
-            <a href="index.html">
-                <img src="./../image/icon/myIcon.png" height=48px></src>
-            </a>
-            <h1>owapote</h1>
-        </div>
-        <div id="headerUniqueButton">
-            <button id="colorThemeToggleButton"></button>
-            <select id="languageSelector">
-                <option value="jp" selected>日本語</option>
-                <option value="en">English</option>
-                <option value="tokipona">toki pona</option>
-            </select>
-        </div>
-    </header>
+    <div id="headerTemplate"></div>
     <nav>
         <ul>
-            <li><a href="../index.html" id="topPageNav">トップページ</a></li>
-            <li><a href="./discription.html" id="discriptionNav">owapoteとは？</a></li>
-            <li><a href="./interestList.html" id="interestListNav">趣味一覧</a></li>
-            <li><a href="./contactForm.html" id="contactFormNav">お問い合わせ</a></li>
+            <li><a href="../index.html" id="topPageNav"></a></li>
+            <li><a href="./discription.html" id="discriptionNav"></a></li>
+            <li><a href="./interestList.html" id="interestListNav"></a></li>
+            <li><a href="./contactForm.html" id="contactFormNav"></a></li>
         </ul>
     </nav>
     <div id="headerBannerImage">
@@ -50,6 +31,16 @@
     </div>
     <h1>お問い合わせ</h1>
     <p>owapoteへのお問い合わせはこちらからお願いいたします</p>
-
+    <a href="https://x.com/owapote_pro" class="twitter-follow-button" data-show-count="false">Follow @x</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    
+    <div id="footerTemplate"></div>
+    <script>
+        $(function() {
+            $("#headerTemplate").load("./../html/menu/headerTemplate.html",function(){
+                InitHeaderEvent();
+            });
+            $("#footerTemplate").load("./../html/menu/footerTemplate.html");
+        });
+    </script>
 </body>
 </html>

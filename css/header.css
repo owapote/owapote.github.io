@@ -44,6 +44,15 @@ header h1{
     float: right;
 }
 
+#myIcon{
+    display: flex;
+    width: 48px;
+    height: 48px;
+    background-image: url(./../image/icon/myIcon.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 #headerLogoAndTitle{
     display: block;
     float: left;
