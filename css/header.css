@@ -45,7 +45,6 @@ header h1{
 }
 
 #myIcon{
-    display: flex;
     width: 48px;
     height: 48px;
     background-image: url(./../image/icon/myIcon.png);
@@ -54,8 +53,9 @@ header h1{
 }
 
 #headerLogoAndTitle{
-    display: block;
+    display: flex;
     float: left;
+    vertical-align: middle;
 }
 
 #headerUniqueButton{
