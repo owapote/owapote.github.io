@@ -6,11 +6,17 @@
     <meta name="description" content="owapoteの、owapoteによる、人間のためのwebサイトです">
     <title>owapoteのホームページ</title>
     <link rel="shortcut icon" href="./image/icon/myIcon.ico">
+    <link rel="stylesheet" href="css/style.css"/>
     <link rel="stylesheet" href="css/topPage.css"/>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="js/header.js"></script>
+    <script>
+        $(window).on('load',function(){
+            $('body').removeClass('preload');
+        });
+    </script>
 </head>
-<body>
+<body class="preload">
     <header>
         <div id="headerLogoAndTitle">
             <a href="index.html">
@@ -19,29 +25,28 @@
             <h1>owapote</h1>
         </div>
         <div id="headerUniqueButton">
-            <button id="colorThemeToggleButton"></button>
+            <button id="colorThemeToggleButton" class="enableTransition"></button>
             <select id="languageSelector">
                 <option value="jp" selected>日本語</option>
                 <option value="en">English</option>
-                <option value="tokipona">Toki Pona</option>
+                <option value="tokipona">toki pona</option>
             </select>
         </div>
     </header>
 
     <nav>
         <ul>
-            <li><a href="./index.html">!トップページ</a></li>
-            <li><a href="./html/discription.html">owapoteとは？</a></li>
-            <li><a href="./index.html">やっていること</a></li>
-            <li><a href="./index.html">お問い合わせ</a></li>
+            <li><a href="./index.html" id="topPageNav">トップページ</a></li>
+            <li><a href="./html/discription.html" id="discriptionNav">owapoteとは？</a></li>
+            <li><a href="./html/interestList.html" id="interestListNav">趣味一覧</a></li>
+            <li><a href="./html/contactForm.html" id="contactFormNav">お問い合わせ</a></li>
         </ul>
     </nav>
     
     <div id="headerBannerImage">
         <img src="./image/header.png" height=auto></src>
     </div>
-    <h1 id="titleText"></h1>
-    <p id="contentText"></p>
+    <h1>owapoteのwebサイトへようこそ！</h1>
 
     <footer>
 

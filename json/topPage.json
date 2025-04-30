@@ -4,10 +4,25 @@
         "en": "Owapote's room",
         "tokipona": "Owapote tomo"
     },
-    "titleText": {
+    "topPageNav": {
         "jp": "トップページ",
         "en": "Top page",
-        "tokipona": "open jasima sitelen"
+        "tokipona": "open lipu"
+    },
+    "discriptionNav": {
+        "jp": "概要",
+        "en": "About",
+        "tokipona": "seme?"
+    },
+    "interestListNav": {
+        "jp": "趣味一覧",
+        "en": "Hobby list",
+        "tokipona": "pona musi"
+    },
+    "contactFormNav": {
+        "jp": "お問い合わせ",
+        "en": "Contact form",
+        "tokipona": "kute ale ijo"
     },
     "contentText": {
         "jp": "owapoteについて解説をします",

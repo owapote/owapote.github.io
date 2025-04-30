@@ -27,6 +27,10 @@ $(function(){
         $(document.body).addClass("darkMode");
     }
 
+    setTimeout(function(){
+        $(document.body).addClass("enableTransition");
+    },100);
+
     //言語設定
     $("#languageSelector").change(function() {
         let getLanguage = $("option:selected").val();
@@ -64,7 +68,10 @@ $(function(){
     Translate = (json) => {
         $(document).ready(function () {
             $("#headerText").text(json["headerText"][language]);
-            $("#titleText").text(json["titleText"][language]);
+            $("#topPageNav").text(json["topPageNav"][language]);
+            $("#discriptionNav").text(json["discriptionNav"][language]);
+            $("#interestListNav").text(json["interestListNav"][language]);
+            $("#contactFormNav").text(json["contactFormNav"][language]);
             $("#contentText").text(json["contentText"][language]);
         });
     }

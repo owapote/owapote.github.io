@@ -1,0 +1,211 @@
+/*---------------*/
+/*ダークモード設定*/
+/*---------------*/
+.darkMode header h1{
+    color: white;
+}
+
+.darkMode p{
+    width: 960px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    background-color:darkcyan;
+    overflow: hidden;
+}
+
+/*--------*/
+/*ヘッダー*/
+/*--------*/
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    color:brown;
+    background-color: bisque;
+    overflow: hidden;
+    transition: none;
+}
+
+.enableTransition header{
+    transition: 1s;
+}
+
+header h1{
+    vertical-align: middle;
+    margin-top: auto;
+    margin-left: 10px;
+    text-align: center;
+    font-size: clamp(16px,7vw,35px);
+    color:chocolate;
+    float: right;
+}
+
+#headerLogoAndTitle{
+    display: block;
+    float: left;
+}
+
+#headerUniqueButton{
+    display: flex;
+    justify-content:flex-end;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.darkMode{
+    background-color: black;
+    color: silver;
+}
+
+.darkMode header{
+    background-color: midnightblue;
+    color: #ddd;
+}
+
+#headerBannerImage{
+    border-top: solid 5px #ccc;
+    border-bottom: solid 5px #ccc;
+    background-color: #fff;
+}
+
+#headerBannerImage img{
+    display: block;
+    margin: auto;
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+}
+
+#languageSelector{
+    height: 34px;
+    width: 95px;
+    padding-left: 5px;
+    border: 2px solid black;
+    border-radius: 100px;
+    
+    /*標準の矢印を消す*/
+    -webkit-appearance: none;
+    appearance: none;
+    
+    /*オリジナルの矢印にする*/
+    background-image: url(./../image/icon/dorpDownArrow_light.svg);
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+}
+
+.darkMode #languageSelector{
+    border: 2px solid white;
+    background-image: url(./../image/icon/dorpDownArrow_night.svg);
+}
+
+#colorThemeToggleButton{
+    z-index: 0;
+    position: relative;
+    display: block;
+    width: 68px;
+    height: 34px;
+    border: 2px solid black;
+    border-radius: 100px;
+    background-image: linear-gradient(90deg, wheat, darkorange);
+    cursor: pointer;
+    transition: none;
+}
+
+.enableTransition #colorThemeToggleButton{
+    transition: 0.3s;
+}
+
+#colorThemeToggleButton::after{
+    content: url(./../image/icon/lightMode.svg);
+    padding-top: 4px;
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    width: 24px;
+    height: 20px;
+    border-radius: 100px;
+    transform: translateY(-50%);
+    background-color: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 1);
+    transition: none;
+}
+
+.enableTransition #colorThemeToggleButton::after{
+    transition: 0.3s;
+}
+
+#colorThemeToggleButton.is-night{
+    border: 2px solid white;
+    background-image: linear-gradient(90deg, mediumpurple, blue);
+    background-color:mediumpurple;
+}
+
+#colorThemeToggleButton.is-night::after{
+    content: url(./../image/icon/nightMode.svg);
+    box-shadow: 0 1px 4px rgba(255, 255, 255, 1);
+    left: calc(100% - 30px);
+}
+
+/*-------------*/
+/*ナビゲーション*/
+/*-------------*/
+nav ul{
+    border-top:    solid 5px #ccc;
+    list-style-type:none;
+    justify-content: space-evenly;
+    display: flex;
+}
+
+nav li{
+    width: 100%;
+    height: 60px;
+    background-color: lemonchiffon;
+}
+
+nav li+li{
+    border-left: solid 5px #ccc;
+}
+
+nav a{
+    display: block;
+    line-height: 60px;
+    white-space: normal;
+    text-overflow: ellipsis;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+    transition: none;
+}
+
+.enableTransition nav a{
+    transition: 0.5s;
+}
+
+nav a:hover{
+    font-weight: bold;
+    background-color: mediumaquamarine;
+}
+
+.darkMode nav a{
+    display: block;
+    line-height: 60px;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+    background-color:powderblue;
+    transition: none;
+}
+
+.enableTransition .darkMode nav a{
+    transition: 0.5s;
+}
+
+.darkMode nav a:hover{
+    font-weight: bold;
+    background-color:lightskyblue;
+}
