@@ -1,0 +1,12 @@
+#twitterButton{
+    z-index: 0;
+    position: relative;
+    display: block;
+    width: 68px;
+    height: 34px;
+    border: 2px solid black;
+    border-radius: 100px;
+    background-image: linear-gradient(90deg, wheat, darkorange);
+    cursor: pointer;
+    transition: none;
+}

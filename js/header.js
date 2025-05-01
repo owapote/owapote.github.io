@@ -53,7 +53,7 @@ function AddToChangeLanguageEvent(){
         if(language == null) language = SelectableLanguage.Japanese;
         else $("#languageSelector").val(language);
         $.ajax({
-            url: "./../json/topPage.json",
+            url: "./../json/header.json",
             dataType: "json",
             type: "GET",
         }).done(function (data){
@@ -69,7 +69,7 @@ function AddToChangeLanguageEvent(){
                 localStorage.setItem("userLanguage",language);
 
                 $.ajax({
-                    url: "./../json/topPage.json",
+                    url: "./../json/header.json",
                     dataType: "json",
                     type: "GET",
                 }).done(function (data){
@@ -88,7 +88,6 @@ function AddToChangeLanguageEvent(){
                 $("#discriptionNav").text(json["discriptionNav"][language]);
                 $("#interestListNav").text(json["interestListNav"][language]);
                 $("#contactFormNav").text(json["contactFormNav"][language]);
-                $("#contentText").text(json["contentText"][language]);
             });
         }
     });
