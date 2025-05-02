@@ -17,21 +17,16 @@
     </script>
 </head>
 <body class="preload">
-    <div id="headerTemplate"></div>
-    <nav>
-        <ul>
-            <li><a href="../index.html" id="topPageNav"></a></li>
-            <li><a href="./discription.html" id="discriptionNav"></a></li>
-            <li><a href="./interestList.html" id="interestListNav"></a></li>
-            <li><a href="./contactForm.html" id="contactFormNav"></a></li>
-        </ul>
-    </nav>
-    <div id="headerBannerImage">
-        <img src="./../image/header.png" height=auto></src>
-    </div>
-    <h1>owapoteの概要</h1>
+    <div id="mainWrap">
+        <div id="headerTemplate"></div>
 
-    <div id="footerTemplate"></div>
+        <main>
+            <h1>owapoteの概要</h1>
+        </main>
+        
+        <div id="footerTemplate"></div>
+    </div>
+    
     <script>
         $(function() {
             $("#headerTemplate").load("./../html/menu/headerTemplate.html",function(){

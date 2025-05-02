@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="owapoteの、owapoteによる、人間のためのwebサイトです">
+
+    <meta property="og:url" content="https://owapote.github.io/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="owapoteのwebサイト" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content=" サムネール画像のパス" />
+    <meta property="og:site_name" content="Webpote" />
+    <meta name=”twitter:card” content=”summary” />
+
     <title>owapoteのホームページ</title>
     <link rel="shortcut icon" href="./image/icon/myIcon.ico">
     <link rel="stylesheet" href="css/style.css"/>
@@ -17,31 +26,16 @@
     </script>
 </head>
 <body class="preload">
-    <div id="headerTemplate"></div>
+    <div id="mainWrap">
+        <div id="headerTemplate"></div>
 
-    <nav>
-        <ul>
-            <li><a href="./index.html" id="topPageNav"></a></li>
-            <li><a href="./html/discription.html" id="discriptionNav"></a></li>
-            <li><a href="./html/interestList.html" id="interestListNav"></a></li>
-            <li><a href="./html/contactForm.html" id="contactFormNav"></a></li>
-        </ul>
-    </nav>
-    
-    <div id="headerBannerImage">
-        <img src="./image/header.png" height=auto></src>
+        <main>
+            <h1>owapoteのwebサイトへようこそ！</h1>
+        </main>
+
+        <div id="footerTemplate"></div>
     </div>
-    <h1>owapoteのwebサイトへようこそ！</h1>
-    <h1>a</h1>
-    <h1>a</h1>
-    <h1>a</h1>
-    <h1>a</h1>
-    <h1>a</h1>
-    <h1>a</h1>
-
-
-    <div id="footerTemplate"></div>
-
+    
     <script>
         $(function() {
             $("#headerTemplate").load("./html/menu/headerTemplate.html",function(){
