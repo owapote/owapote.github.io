@@ -15,10 +15,10 @@
 
     <title>owapoteのホームページ</title>
     <link rel="shortcut icon" href="./image/icon/myIcon.ico">
-    <link rel="stylesheet" href="css/style.css"/>
-    <link rel="stylesheet" href="css/topPage.css"/>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="js/header.js"></script>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/topPage.css"/>
     <script>
         $(window).on('load',function(){
             $('body').removeClass('preload');
@@ -28,10 +28,9 @@
 <body class="preload">
     <div id="mainWrap">
         <div id="headerTemplate"></div>
-
+        
         <main>
-            <h1>owapoteのwebサイトへようこそ！</h1>
-            <p>owapoteについて解説をしています</p>
+            <div id="mainTemplate"></div>
         </main>
 
         <div id="footerTemplate"></div>
@@ -39,10 +38,16 @@
     
     <script>
         $(function() {
-            $("#headerTemplate").load("./html/menu/headerTemplate.html",function(){
-                InitHeaderEvent();
+            $.when(
+                $("#headerTemplate").load("./html/menu/headerTemplate.html",function(){
+                    InitHeaderEvent();
+                }),
+                $("#footerTemplate").load("./html/menu/footerTemplate.html")
+            ).done(function () {
+                requestAnimationFrame(() => {
+                    document.body.classList.remove("preload");
+                });
             });
-            $("#footerTemplate").load("./html/menu/footerTemplate.html");
         });
     </script>
 </body>

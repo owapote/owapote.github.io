@@ -92,3 +92,31 @@ function AddToChangeLanguageEvent(){
         }
     });
 }
+
+//ボタンに応じて表示内容を切り替える
+function AddToChangeContentWithButton(num){
+    var target = document.getElementById("mainTemplate");
+    while(target.firstChild){
+        target.removeChild(target.firstChild);
+    }
+    var path;
+    switch(num){
+        case 0:
+            path = "./html/topPage.html";
+            break;
+        case 1:
+            path = "./html/discription.html";
+            break;
+        case 2:
+            path = "./html/interestList.html";
+            break;
+        case 3:
+            path = "./html/contactForm.html";
+            break;
+        default:
+            path = "./html/topPage.html";
+            break;
+    }
+    $(target).load(path);
+    target.appendChild(createDiv);
+}

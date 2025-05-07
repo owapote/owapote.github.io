@@ -25,7 +25,9 @@ body{
     box-sizing: border-box;
     height: 100%;
     font-size: 16px;
-    transition: none;
+
+    transition: opacity 1s ease;
+    opacity: 1;
 }
 
 body *{
@@ -33,8 +35,8 @@ body *{
     font-weight: 400;
 }
 
-body.enableTransition {
-    transition: background-color 1s;
+body.darkMode body.preload{
+background-color: black;
 }
 
 h1{
@@ -85,4 +87,8 @@ main {
     -moz-transition: none !important;
     -ms-transition: none !important;
     -o-transition: none !important;
+}
+
+body.preload{
+    opacity: 0;
 }
