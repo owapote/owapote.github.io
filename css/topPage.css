@@ -3,13 +3,21 @@ main{
 }
 
 main h1{
-    border-left: solid 12px;
-    border-left-width: 5px;
+    margin-top: 5px;
+    margin-left: 5px;
+    border-left: solid 5px;
+    padding-left: 6px;
     font-size: 26px;
     background-color: bisque;
+    height:50px;
+    line-height:50px;
 
     color: chocolate;
     transition: none;
+}
+
+main p{
+    margin-left: 20px;
 }
 
 .darkMode main h1{

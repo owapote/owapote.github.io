@@ -1,4 +1,7 @@
 import { TopPage } from "./topPage.js";
+import { DiscriptionPage } from "./discription.js";
+import { InterestListPage } from "./interestList.js";
+import { ContactFormPage } from "./contactForm.js";
 import { SelectableLanguage } from "./websiteModule.js";
 import { MenuKind } from "./websiteModule.js";
 
@@ -6,8 +9,6 @@ import { MenuKind } from "./websiteModule.js";
 function InitHeaderEvent(){
     AddToChangeColorModeEvent();
     AddToChangeLanguageEvent();
-
-    AddToChangeContentWithButton(MenuKind.TopPage);
 }
 
 //type=module対策
@@ -95,7 +96,8 @@ function AddToChangeLanguageEvent(){
 
             document.documentElement.lang = language;
             const num = localStorage.getItem("nowContent");
-            AddToChangeContentWithButton(num);
+            console.log("nowContent,get:"+num);
+            AddToChangeContentWithButton(Number(num));
         });
     });
 }
@@ -121,17 +123,17 @@ function AddToChangeContentWithButton(num){
         case MenuKind.Discription:
             usePathHTML = "./html/discription.html";
             usePathCSS="./css/discription.css";
-            pageClass = new TopPage();
+            pageClass = new DiscriptionPage();
             break;
         case MenuKind.InterestList:
             usePathHTML = "./html/interestList.html";
             usePathCSS="./css/interestList.css";
-            pageClass = new TopPage();
+            pageClass = new InterestListPage();
             break;
         case MenuKind.ContactForm:
             usePathHTML = "./html/contactForm.html";
             usePathCSS="./css/contactForm.css";
-            pageClass = new TopPage();
+            pageClass = new ContactFormPage();
             break;
         default:
             usePathHTML = "./html/topPage.html";
@@ -139,7 +141,7 @@ function AddToChangeContentWithButton(num){
             pageClass = new TopPage();
             break;
     }
-
+    console.log("nowContent,set:"+num);
     localStorage.setItem("nowContent", num);
     $(targetHTML).load(usePathHTML,function(){
         pageClass.ChangeContentsLanguage();

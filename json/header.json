@@ -11,8 +11,8 @@
     },
     "discriptionNav": {
         "jp": "概要",
-        "en": "About",
-        "tok": "seme?"
+        "en": "About me",
+        "tok": "sina li seme?"
     },
     "interestListNav": {
         "jp": "趣味一覧",
@@ -21,7 +21,7 @@
     },
     "contactFormNav": {
         "jp": "お問い合わせ",
-        "en": "Contact form",
+        "en": "Contact me",
         "tok": "kute ale ijo"
     }
 }
