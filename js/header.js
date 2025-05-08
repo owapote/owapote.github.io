@@ -27,7 +27,7 @@ function AddToChangeColorModeEvent(){
             $(document.body).addClass("darkMode");
         }
 
-        //ページが読み込まれた瞬間はtransitionをさせないようにしている
+        //ページが読み込まれた瞬間はカラーテーマのtransitionをさせないようにしている
         setTimeout(function(){
             $(document.body).addClass("enableTransition");
         },100);
@@ -92,6 +92,8 @@ function AddToChangeLanguageEvent(){
             }else{
                 alert("This language cannot selected:"+SelectableLanguage[getLanguage]);
             }
+
+            document.documentElement.lang = language;
             const num = localStorage.getItem("nowContent");
             AddToChangeContentWithButton(num);
         });

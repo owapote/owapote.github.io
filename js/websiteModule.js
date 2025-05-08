@@ -1,7 +1,7 @@
 const SelectableLanguage = Object.freeze({
     Japanese: "jp",
     English: "en",
-    TokiPona: "tokipona",
+    TokiPona: "tok",
 });
 
 const MenuKind = Object.freeze({
