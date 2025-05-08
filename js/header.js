@@ -1,17 +1,6 @@
 import { TopPage } from "./topPage.js";
-
-const SelectableLanguage = Object.freeze({
-    Japanese: "jp",
-    English: "en",
-    TokiPona: "tokipona",
-});
-
-const MenuKind = Object.freeze({
-    TopPage: 0,
-    Discription: 1,
-    InterestList: 2,
-    ContactForm: 3,
-});
+import { SelectableLanguage } from "./websiteModule.js";
+import { MenuKind } from "./websiteModule.js";
 
 //ヘッダーのボタンなどのイベントを追加
 function InitHeaderEvent(){
