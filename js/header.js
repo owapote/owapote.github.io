@@ -1,14 +1,29 @@
+import { TopPage } from "./topPage.js";
+
 const SelectableLanguage = Object.freeze({
     Japanese: "jp",
     English: "en",
     TokiPona: "tokipona",
 });
 
+const MenuKind = Object.freeze({
+    TopPage: 0,
+    Discription: 1,
+    InterestList: 2,
+    ContactForm: 3,
+});
+
 //ヘッダーのボタンなどのイベントを追加
 function InitHeaderEvent(){
     AddToChangeColorModeEvent();
     AddToChangeLanguageEvent();
+
+    AddToChangeContentWithButton(MenuKind.TopPage);
 }
+
+//type=module対策
+window.InitHeaderEvent = InitHeaderEvent;
+window.AddToChangeContentWithButton = AddToChangeContentWithButton;
 
 //カラーテーマの切り替え
 function AddToChangeColorModeEvent(){
@@ -48,6 +63,16 @@ function AddToChangeLanguageEvent(){
     $(function(){
         let language;
 
+        //jsonより、HTMLに挿入
+        const Translate = (json) => {
+            $(document).ready(function () {
+                $("#headerText").text(json["headerText"][language]);
+                $("#topPageNav").text(json["topPageNav"][language]);
+                $("#discriptionNav").text(json["discriptionNav"][language]);
+                $("#interestListNav").text(json["interestListNav"][language]);
+                $("#contactFormNav").text(json["contactFormNav"][language]);
+            });
+        }
         //初期設定
         language = localStorage.getItem("userLanguage");
         if(language == null) language = SelectableLanguage.Japanese;
@@ -78,45 +103,55 @@ function AddToChangeLanguageEvent(){
             }else{
                 alert("This language cannot selected:"+SelectableLanguage[getLanguage]);
             }
+            const num = localStorage.getItem("nowContent");
+            AddToChangeContentWithButton(num);
         });
-
-        //jsonより、HTMLに挿入
-        Translate = (json) => {
-            $(document).ready(function () {
-                $("#headerText").text(json["headerText"][language]);
-                $("#topPageNav").text(json["topPageNav"][language]);
-                $("#discriptionNav").text(json["discriptionNav"][language]);
-                $("#interestListNav").text(json["interestListNav"][language]);
-                $("#contactFormNav").text(json["contactFormNav"][language]);
-            });
-        }
     });
 }
 
 //ボタンに応じて表示内容を切り替える
 function AddToChangeContentWithButton(num){
-    var target = document.getElementById("mainTemplate");
-    while(target.firstChild){
-        target.removeChild(target.firstChild);
+    const targetHTML = document.getElementById("mainTemplate");
+    const targetCSS = document.getElementById("loadCSSForContent");
+
+    while(targetHTML.firstChild){
+        targetHTML.removeChild(targetHTML.firstChild);
     }
-    var path;
+
+    var usePathHTML;
+    var usePathCSS;
+    var pageClass;
     switch(num){
-        case 0:
-            path = "./html/topPage.html";
+        case MenuKind.TopPage:
+            usePathHTML = "./html/topPage.html";
+            usePathCSS="./css/topPage.css";
+            pageClass = new TopPage();
             break;
-        case 1:
-            path = "./html/discription.html";
+        case MenuKind.Discription:
+            usePathHTML = "./html/discription.html";
+            usePathCSS="./css/discription.css";
+            pageClass = new TopPage();
             break;
-        case 2:
-            path = "./html/interestList.html";
+        case MenuKind.InterestList:
+            usePathHTML = "./html/interestList.html";
+            usePathCSS="./css/interestList.css";
+            pageClass = new TopPage();
             break;
-        case 3:
-            path = "./html/contactForm.html";
+        case MenuKind.ContactForm:
+            usePathHTML = "./html/contactForm.html";
+            usePathCSS="./css/contactForm.css";
+            pageClass = new TopPage();
             break;
         default:
-            path = "./html/topPage.html";
+            usePathHTML = "./html/topPage.html";
+            usePathCSS="./css/topPage.css";
+            pageClass = new TopPage();
             break;
     }
-    $(target).load(path);
-    target.appendChild(createDiv);
+
+    localStorage.setItem("nowContent", num);
+    $(targetHTML).load(usePathHTML,function(){
+        pageClass.ChangeContentsLanguage();
+    });
+    targetCSS.href = usePathCSS;
 }
