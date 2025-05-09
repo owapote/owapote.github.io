@@ -9,6 +9,12 @@ import { MenuKind } from "./websiteModule.js";
 function InitHeaderEvent(){
     AddToChangeColorModeEvent();
     AddToChangeLanguageEvent();
+
+    let language = localStorage.getItem("userLanguage");
+    if(language == null) language = SelectableLanguage.Japanese;
+    document.documentElement.lang = language;
+
+    AddToChangeContentWithButton(MenuKind.TopPage);
 }
 
 //type=module対策
@@ -96,7 +102,6 @@ function AddToChangeLanguageEvent(){
 
             document.documentElement.lang = language;
             const num = localStorage.getItem("nowContent");
-            console.log("nowContent,get:"+num);
             AddToChangeContentWithButton(Number(num));
         });
     });
