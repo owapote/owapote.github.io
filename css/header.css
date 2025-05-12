@@ -93,7 +93,7 @@ header h1{
     appearance: none;
     
     /*オリジナルの矢印にする*/
-    background-image: url(./../image/icon/dorpDownArrow_light.svg);
+    background-image: url(./../image/icon/dropDownArrow_light.svg);
     background-position: right 10px center;
     background-repeat: no-repeat;
     background-size: 16px 16px;
@@ -105,7 +105,7 @@ header h1{
 
 .darkMode #languageSelector{
     border: 2px double white;
-    background-image: url(./../image/icon/dorpDownArrow_night.svg);
+    background-image: url(./../image/icon/dropDownArrow_night.svg);
 }
 
 #colorThemeToggleButton{

@@ -26,6 +26,7 @@ body{
     height: 100%;
     font-size: 16px;
 
+    /*ブレンド*/
     transition: opacity 1s ease;
     opacity: 1;
 }
@@ -35,8 +36,12 @@ body *{
     font-weight: 400;
 }
 
+body.enableTransition{
+    transition: 1s;
+}
+
 body.darkMode body.preload{
-background-color: black;
+    background-color: black;
 }
 
 h1{
@@ -77,7 +82,7 @@ main {
 }
 
 .enableTransition p{
-    transition: 1s;
+    transition: 0s; /*←なんで？？？*/
 }
 
 /*Chromeでのtransitionバグ対策*/

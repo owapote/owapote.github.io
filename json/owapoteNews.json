@@ -1,0 +1,34 @@
+{
+    "owapoteNews":[
+        {
+            "url": "https://google.com/",
+            "imagePath": "./../image/icon/dropDownArrow_light.svg",
+            "title": "web制作、楽しいです...！",
+            "description": "みんなもやろうね"
+        },
+        {
+            "url": "https://twitter.com/",
+            "imagePath": "./../image/icon/twitter.svg",
+            "title": "ボカロ曲を鋭意制作中です！",
+            "description": "近日公開予定..."
+        },
+        {
+            "url": "https://youtube.com/",
+            "imagePath": "./../image/icon/lightMode.svg",
+            "title": "動画ができました！",
+            "description": "YouTubeにて絶賛公開中！"
+        },
+        {
+            "url": "https://yahoo.com/",
+            "imagePath": "./../image/icon/nightMode.svg",
+            "title": "暇です",
+            "description": "プログラミングしかしていない..."
+        },
+        {
+            "url": "https://www.nicovideo.jp/",
+            "imagePath": "./../image/icon/myIcon.png",
+            "title": "大会に行きます",
+            "description": "詳細はこちらから"
+        }
+    ]
+}

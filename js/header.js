@@ -1,9 +1,16 @@
 import { TopPage } from "./topPage.js";
-import { DiscriptionPage } from "./discription.js";
+import { DescriptionPage } from "./description.js";
 import { InterestListPage } from "./interestList.js";
 import { ContactFormPage } from "./contactForm.js";
 import { SelectableLanguage } from "./websiteModule.js";
 import { MenuKind } from "./websiteModule.js";
+import { HashBinding } from "./hashBinding.js";
+
+const binder = new HashBinding();
+
+//type=module対策
+window.InitHeaderEvent = InitHeaderEvent;
+window.AddToChangeContentWithButton = AddToChangeContentWithButton;
 
 //ヘッダーのボタンなどのイベントを追加
 function InitHeaderEvent(){
@@ -16,10 +23,6 @@ function InitHeaderEvent(){
 
     AddToChangeContentWithButton(MenuKind.TopPage);
 }
-
-//type=module対策
-window.InitHeaderEvent = InitHeaderEvent;
-window.AddToChangeContentWithButton = AddToChangeContentWithButton;
 
 //カラーテーマの切り替え
 function AddToChangeColorModeEvent(){
@@ -64,7 +67,7 @@ function AddToChangeLanguageEvent(){
             $(document).ready(function () {
                 $("#headerText").text(json["headerText"][language]);
                 $("#topPageNav").text(json["topPageNav"][language]);
-                $("#discriptionNav").text(json["discriptionNav"][language]);
+                $("#descriptionNav").text(json["descriptionNav"][language]);
                 $("#interestListNav").text(json["interestListNav"][language]);
                 $("#contactFormNav").text(json["contactFormNav"][language]);
             });
@@ -97,7 +100,7 @@ function AddToChangeLanguageEvent(){
                     Translate(data);
                 });
             }else{
-                alert("This language cannot selected:"+SelectableLanguage[getLanguage]);
+                alert("This language cannot selected:" + SelectableLanguage[getLanguage]);
             }
 
             document.documentElement.lang = language;
@@ -109,6 +112,8 @@ function AddToChangeLanguageEvent(){
 
 //ボタンに応じて表示内容を切り替える
 function AddToChangeContentWithButton(num){
+    //if(localStorage.getItem("nowContent") == num) return;
+
     const targetHTML = document.getElementById("mainTemplate");
     const targetCSS = document.getElementById("loadCSSForContent");
 
@@ -125,10 +130,10 @@ function AddToChangeContentWithButton(num){
             usePathCSS="./css/topPage.css";
             pageClass = new TopPage();
             break;
-        case MenuKind.Discription:
-            usePathHTML = "./html/discription.html";
-            usePathCSS="./css/discription.css";
-            pageClass = new DiscriptionPage();
+        case MenuKind.description:
+            usePathHTML = "./html/description.html";
+            usePathCSS="./css/description.css";
+            pageClass = new DescriptionPage();
             break;
         case MenuKind.InterestList:
             usePathHTML = "./html/interestList.html";
@@ -146,10 +151,21 @@ function AddToChangeContentWithButton(num){
             pageClass = new TopPage();
             break;
     }
-    console.log("nowContent,set:"+num);
     localStorage.setItem("nowContent", num);
     $(targetHTML).load(usePathHTML,function(){
         pageClass.ChangeContentsLanguage();
+        $.ajax({
+            url: "./../json/owapoteNews.json",
+            dataType: "json",
+            type: "GET",
+        }).done(function (json){
+            if(num == MenuKind.TopPage){
+                const targetNode = document.getElementById("owapoteNews");
+
+                binder.RemoveBinding(targetNode);
+                binder.ApplyBindingsOnce(json,targetNode);
+            }
+        });
     });
     targetCSS.href = usePathCSS;
 }
