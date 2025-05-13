@@ -1,0 +1,17 @@
+@keyframes slideShowFromLtoR {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes slideShowFromRtoL {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}

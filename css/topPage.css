@@ -5,7 +5,6 @@ main{
 main h1{
     margin-top: 5px;
     margin-left: 5px;
-    border-left: solid 5px;
     padding-left: 6px;
     font-size: 26px;
     background-color: bisque;
@@ -24,7 +23,33 @@ main p{
     background-color: midnightblue;
 }
 
+#topPageSlideShow{
+    display: flex;
+
+    animation-name: slideShowFromRtoL;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-delay: 1s;
+    animation-fill-mode: both; 
+}
+
+#topPageSlideShow:hover{
+    animation-play-state: paused;
+}
+
+#topPageSlideShow ul{
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+#topPageSlideShow li{
+    list-style-type: none;
+}
+
 article{
+    margin-top: 15px;
     margin-left: 5px;
     background-color: white;
 }
@@ -33,17 +58,26 @@ article{
     background-color: black;
 }
 
-.enableTransition article{
-    transition: 1s;
-}
-
 article{
-    border: solid 5px ;
+    border: solid 5px;
+    border-radius: 5px;
 }
 
 article h1{
     margin-top: 0px;
     margin-left: 0px;
+    border-left: 0px;
+    border-bottom: solid 5px black;
+    color: black;
+}
+
+.darkMode article h1{
+    border-bottom: solid 5px white;
+}
+
+#owapoteNews{
+    height:270px;
+    overflow-y: scroll;
 }
 
 #owapoteNews a{
@@ -60,8 +94,16 @@ article h1{
     align-items: center;
     padding-top:    5px;
     padding-bottom: 5px;
-    border-top: solid 3px black;
+    height:80px;
     background-color:lemonchiffon;
+}
+
+.owapoteNewsContent + .owapoteNewsContent{
+    border-top: solid 3px chocolate;
+}
+
+.darkMode .owapoteNewsContent + .owapoteNewsContent{
+    border-top: solid 3px white;
 }
 
 .owapoteNewsContent:nth-of-type(2n){

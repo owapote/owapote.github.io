@@ -3,5 +3,10 @@
         "jp": "owapoteのお部屋へようこそ！",
         "en": "Welcome to Owapote's room!",
         "tok": "kama pona e Owapote tomo!"
+    },
+    "recentTopicsText":{
+        "jp": "最近のできごと",
+        "en": "Most recent topics",
+        "tok": "pali pi tenpo pini sin"
     }
 }

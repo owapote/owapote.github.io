@@ -4,6 +4,7 @@
 @import url("./header.css");
 @import url("./footer.css");
 @import url("./twitter.css");
+@import url("./animation.css");
 
 /*リセットCSS*/
 *{
@@ -48,6 +49,8 @@ h1{
     font-size: 20px;
     color: chocolate;
     transition: none;
+    border-left: solid 5px chocolate;
+    border-bottom: solid 3px gray;
 }
 
 .darkMode h1{
