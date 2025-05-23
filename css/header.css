@@ -28,16 +28,19 @@ header{
 header h1{
     vertical-align: middle;
     margin-top: auto;
-    margin-left: 10px;
+    margin-left:  10px;
+    border-left:   0px;
+    border-bottom: 0px;
     text-align: center;
-    font-weight: 800;
+    font-weight:   800;
     font-size: clamp(16px,7vw,35px);
+    
     color:chocolate;
     float: right;
 }
 
 #myIcon{
-    width: 48px;
+    width:  48px;
     height: 48px;
     background-image: url(./../image/icon/myIcon.png);
     background-size: contain;
@@ -46,7 +49,7 @@ header h1{
 
 #headerLogoAndTitle{
     display: flex;
-    float: left;
+    float:   left;
     vertical-align: middle;
 }
 
@@ -63,27 +66,27 @@ header h1{
 }
 
 .darkMode header{
-    background-color: midnightblue;
+    background-color: #222;
     color: #ddd;
 }
 
 #headerBannerImage{
-    border-top: solid 5px #ccc;
+    border-top:    solid 5px #ccc;
     border-bottom: solid 5px #ccc;
     background-color: #fff;
 }
 
 #headerBannerImage img{
-    display: block;
-    margin: auto;
-    max-width: 500px;
-    width: 100%;
-    height: auto;
+    display:    block;
+    margin:     auto;
+    max-width:  500px;
+    width:      100%;
+    height:     auto;
 }
 
 #languageSelector{
     height: 34px;
-    width: 95px;
+    width:  95px;
     padding-left: 5px;
     border: 2px solid black;
     border-radius: 100px;
@@ -112,7 +115,7 @@ header h1{
     z-index: 0;
     position: relative;
     display: block;
-    width: 68px;
+    width:  68px;
     height: 34px;
     border: 2px solid black;
     border-radius: 100px;
@@ -130,9 +133,9 @@ header h1{
     content: url(./../image/icon/lightMode.svg);
     padding-top: 4px;
     position: absolute;
-    top: 50%;
-    left: 5px;
-    width: 24px;
+    top:    50%;
+    left:    5px;
+    width:  24px;
     height: 20px;
     border-radius: 100px;
     transform: translateY(-50%);

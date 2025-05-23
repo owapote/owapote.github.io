@@ -86,6 +86,7 @@ function AddToChangeLanguageEvent(){
 
         //イベント
         $("#languageSelector").change(function() {
+            const num = localStorage.getItem("nowContent");
             let getLanguage = $("option:selected").val();
             
             if(Object.values(SelectableLanguage).includes(getLanguage)){
@@ -104,15 +105,13 @@ function AddToChangeLanguageEvent(){
             }
 
             document.documentElement.lang = language;
-            const num = localStorage.getItem("nowContent");
             AddToChangeContentWithButton(Number(num));
         });
     });
 }
 
-//ボタンに応じて表示内容を切り替える
-function AddToChangeContentWithButton(num){
-    //if(localStorage.getItem("nowContent") == num) return;
+//sボタンに応じて表示内容を切り替える
+function AddToChangeContentWithButton(menuNum){
 
     const targetHTML = document.getElementById("mainTemplate");
     const targetCSS = document.getElementById("loadCSSForContent");
@@ -124,7 +123,7 @@ function AddToChangeContentWithButton(num){
     var usePathHTML;
     var usePathCSS;
     var pageClass;
-    switch(num){
+    switch(menuNum){
         case MenuKind.TopPage:
             usePathHTML = "./html/topPage.html";
             usePathCSS="./css/topPage.css";
@@ -151,21 +150,13 @@ function AddToChangeContentWithButton(num){
             pageClass = new TopPage();
             break;
     }
-    localStorage.setItem("nowContent", num);
+    localStorage.setItem("nowContent", menuNum);
     $(targetHTML).load(usePathHTML,function(){
         pageClass.ChangeContentsLanguage();
-        $.ajax({
-            url: "./../json/owapoteNews.json",
-            dataType: "json",
-            type: "GET",
-        }).done(function (json){
-            if(num == MenuKind.TopPage){
-                const targetNode = document.getElementById("owapoteNews");
-
-                binder.RemoveBinding(targetNode);
-                binder.ApplyBindingsOnce(json,targetNode);
-            }
-        });
+        //トップページのみ、最近のできごとを表示
+        if(menuNum == MenuKind.TopPage){
+            binder.ShowOwapoteNews(menuNum);
+        }
     });
     targetCSS.href = usePathCSS;
 }

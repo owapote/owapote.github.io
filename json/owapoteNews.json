@@ -3,32 +3,72 @@
         {
             "url": "https://google.com/",
             "imagePath": "./../image/icon/dropDownArrow_light.svg",
-            "title": "web制作、楽しいです...！",
-            "description": "みんなもやろうね"
+            "title":{
+                "jp": "web制作、楽しいです...！",
+                "en": "Making website is fun!",
+                "tok": "pali lipu li pona!"
+            },
+            "description":{
+                "jp": "みんなもやろうね",
+                "en": "Shall we?",
+                "tok": "pona musi"
+            }
         },
         {
             "url": "https://twitter.com/",
             "imagePath": "./../image/icon/twitter.svg",
-            "title": "ボカロ曲を鋭意制作中です！",
-            "description": "近日公開予定..."
+            "title":{
+                "jp": "ボカロ曲を鋭意制作中です！",
+                "en": "Hobby list",
+                "tok": "pona musi"
+            },
+            "description":{
+                "jp": "近日公開予定...",
+                "en": "Hobby list",
+                "tok": "pona musi"
+            }
         },
         {
             "url": "https://youtube.com/",
             "imagePath": "./../image/icon/lightMode.svg",
-            "title": "動画ができました！",
-            "description": "YouTubeにて絶賛公開中！"
+            "title":{
+                    "jp": "動画ができました！",
+                    "en": "Hobby list",
+                    "tok": "pona musi"
+            },
+            "description":{
+                    "jp": "YouTubeにて絶賛公開中！",
+                    "en": "Hobby list",
+                    "tok": "pona musi"
+            }
         },
         {
             "url": "https://yahoo.com/",
             "imagePath": "./../image/icon/nightMode.svg",
-            "title": "暇です",
-            "description": "プログラミングしかしていない..."
+            "title":{
+                "jp": "暇です",
+                "en": "Hobby list",
+                "tok": "pona musi"
+            },
+            "description":{
+                "jp": "プログラミングしかしていない...",
+                "en": "Hobby list",
+                "tok": "pona musi"
+            }
         },
         {
             "url": "https://www.nicovideo.jp/",
             "imagePath": "./../image/icon/myIcon.png",
-            "title": "大会に行きます",
-            "description": "詳細はこちらから"
+            "title":{
+                "jp": "大会に行きます",
+                "en": "Hobby list",
+                "tok": "pona musi"
+            },
+            "description":{
+                "jp": "詳細はこちらから",
+                "en": "Hobby list",
+                "tok": "pona musi"
+            }
         }
     ]
 }

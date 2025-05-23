@@ -3,14 +3,13 @@ main{
 }
 
 main h1{
-    margin-top: 5px;
-    margin-left: 5px;
+    margin-top:   5px;
+    margin-left:  5px;
     padding-left: 6px;
-    font-size: 26px;
+    font-size:   26px;
+    height:      50px;
+    line-height: 50px;
     background-color: bisque;
-    height:50px;
-    line-height:50px;
-
     color: chocolate;
     transition: none;
 }
@@ -20,7 +19,7 @@ main p{
 }
 
 .darkMode main h1{
-    background-color: midnightblue;
+    background-color: #222;
 }
 
 #topPageSlideShow{
@@ -30,7 +29,7 @@ main p{
     animation-duration: 20s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
-    animation-delay: 1s;
+    animation-delay:    1s;
     animation-fill-mode: both; 
 }
 
@@ -52,35 +51,45 @@ article{
     margin-top: 15px;
     margin-left: 5px;
     background-color: white;
+    transition: background-color 1s;
 }
 
 .darkMode article{
-    background-color: black;
+    background-color: #222;
 }
 
 article{
-    border: solid 5px;
-    border-radius: 5px;
+    border: solid  2px;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 article h1{
-    margin-top: 0px;
+    margin-top:  0px;
     margin-left: 0px;
     border-left: 0px;
-    border-bottom: solid 5px black;
-    color: black;
+    border-bottom: solid 3px black;
 }
 
 .darkMode article h1{
-    border-bottom: solid 5px white;
+    border-bottom: solid 3px #BBB;
 }
 
 #owapoteNews{
+    display: flex;
+    flex-flow: column;
     height:270px;
     overflow-y: scroll;
 }
 
+#owapoteNews img{
+    height:60px;
+    width:60px;
+    padding-right: 10px;
+}
+
 #owapoteNews a{
+    margin-left: 0px;
     text-decoration: none;
     color: black;
 }
@@ -90,20 +99,14 @@ article h1{
 }
 
 .owapoteNewsContent{
-    display: flex;
-    align-items: center;
-    padding-top:    5px;
-    padding-bottom: 5px;
-    height:80px;
-    background-color:lemonchiffon;
 }
 
 .owapoteNewsContent + .owapoteNewsContent{
-    border-top: solid 3px chocolate;
+    border-top: solid 1px chocolate;
 }
 
 .darkMode .owapoteNewsContent + .owapoteNewsContent{
-    border-top: solid 3px white;
+    border-top: solid 1px #BBB;
 }
 
 .owapoteNewsContent:nth-of-type(2n){
@@ -115,5 +118,19 @@ article h1{
 }
 
 .darkMode .owapoteNewsContent{
-    background-color: midnightblue;
+    background-color: #222;
+}
+
+.owapoteNewsContentBackGround{
+    display: flex;
+    align-items: center;
+    padding-left:   10px;
+    padding-top:    15px;
+    padding-bottom: 15px;
+    background-color:lemonchiffon;
+    transition: background-color 1.0s;
+}
+
+.darkMode .owapoteNewsContentBackGround{
+    background-color: #333;
 }
