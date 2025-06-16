@@ -110,12 +110,13 @@ function AddToChangeLanguageEvent(){
     });
 }
 
-//sボタンに応じて表示内容を切り替える
+//ボタンに応じて表示内容を切り替える
 function AddToChangeContentWithButton(menuNum){
 
     const targetHTML = document.getElementById("mainTemplate");
     const targetCSS = document.getElementById("loadCSSForContent");
 
+    //memo:ここ、whileにする必要ないかもしれない
     while(targetHTML.firstChild){
         targetHTML.removeChild(targetHTML.firstChild);
     }
@@ -123,6 +124,7 @@ function AddToChangeContentWithButton(menuNum){
     var usePathHTML;
     var usePathCSS;
     var pageClass;
+    //HACK:強度が低い
     switch(menuNum){
         case MenuKind.TopPage:
             usePathHTML = "./html/topPage.html";
