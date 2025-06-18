@@ -43,6 +43,17 @@ main p{
     list-style-type: none;
 }
 
+#youtubeShortsGeoGuessrContents{
+    display: flex;
+    margin-top: 5px;
+}
+
+/*  TODO:iframeとdivを共存させたい...
+#youtubeShortsGeoGurssrContents iframe{
+    margin-right: 10px;
+}
+*/
+
 article{
     margin-top: 15px;
     margin-left: 5px;
@@ -95,6 +106,7 @@ article h1{
 }
 
 .owapoteNewsContent{
+
 }
 
 .owapoteNewsContent + .owapoteNewsContent{

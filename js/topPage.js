@@ -1,5 +1,4 @@
 import { MainTemplate } from "./interface/mainTemplate.js";
-import { YouTubeAPI }   from "./youtubeAPI.js";
 
 export class TopPage extends MainTemplate{
     ChangeContentsLanguage(){

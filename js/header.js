@@ -5,8 +5,14 @@ import { ContactFormPage } from "./contactForm.js";
 import { SelectableLanguage } from "./websiteModule.js";
 import { MenuKind } from "./websiteModule.js";
 import { HashBinding } from "./hashBinding.js";
+import { YouTubeAPI }   from "./youtubeAPI.js";
 
 const binder = new HashBinding();
+const youtubeAPI = new YouTubeAPI;
+
+const playlistIds  = Object.freeze({
+    "YukariGeoGuessrShorts" : "PLYKfT5xUBiECfMwMC2bsAGemA9TAnGzdg",
+});
 
 //type=module対策
 window.InitHeaderEvent = InitHeaderEvent;
@@ -22,6 +28,7 @@ function InitHeaderEvent(){
     document.documentElement.lang = language;
 
     AddToChangeContentWithButton(MenuKind.TopPage);
+    youtubeAPI.GetYouTubePlayListVideo(playlistIds.YukariGeoGuessrShorts, 3);
 }
 
 //カラーテーマの切り替え
@@ -158,6 +165,7 @@ function AddToChangeContentWithButton(menuNum){
         //トップページのみ、最近のできごとを表示
         if(menuNum == MenuKind.TopPage){
             binder.ShowOwapoteNews(menuNum);
+            youtubeAPI.AppendIframesToContainer(playlistIds.YukariGeoGuessrShorts, "youtubeShortsGeoGuessrContents");
         }
     });
     targetCSS.href = usePathCSS;

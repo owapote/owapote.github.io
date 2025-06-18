@@ -3,5 +3,10 @@
         "jp": "お問い合わせ",
         "en": "Contact me",
         "tok": "kute ale ijo"
+    },
+    "contactMeContent": {
+        "jp": "owapoteへのお問い合わせはこちらからお願いいたします",
+        "en": "Contact me",
+        "tok": "kute ale ijo"
     }
 }
