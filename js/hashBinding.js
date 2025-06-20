@@ -1,45 +1,57 @@
-import { MenuKind } from "./websiteModule.js";
+class ViewModelBase{
+    constructor(selectedLanguage){
+        this.selectedLanguage = selectedLanguage;
+    }
 
-export class HashBinding {
-    constructor() {
-        this.hasBound = false;
-        this.selectedLanguage = ko.observable(localStorage.getItem("userLanguage"));
+    async Load(){
+        throw new Error("派生クラスで実装をしてね");
+    }
+}
+
+export class OwapoteNewsViewModel extends ViewModelBase{
+    constructor(selectedLanguage){
+        super(selectedLanguage);
         this.owapoteNews = ko.observableArray([]);
     }
 
-    //一回だけapplyBindings
-    ApplyBindingsOnce(json, targetNode) {
-        if (!this.hasBound) {
-            ko.applyBindings(json, targetNode);
-            this.hasBound = true;
+    async Load(){
+        try {
+            const data = await $.ajax({
+                url: "./../json/owapoteNews.json",
+                dataType: "json",
+                type: "GET",
+            });
+            this.owapoteNews(data.owapoteNews);
+        } catch (error) {
+            console.error("owapoteNews.jsonの取得に失敗しました:", error);
         }
+    }
+}
+
+export class HashBinding {
+    constructor() {
+        this.hasBoundNodes = new WeakMap(); //targetNode, boundFlag
+        this.selectedLanguage = ko.observable(localStorage.getItem("userLanguage"));
+    }
+
+    // 多重バインドされないapplyBindings
+    ApplyBindingsToNode(viewModel, targetNode) {
+        if(this.hasBoundNodes.get(targetNode)){
+            ko.cleanNode(targetNode);
+        }
+        ko.applyBindings(viewModel, targetNode);
+        this.hasBoundNodes.set(targetNode, true);
     }
 
     //owapoteNewsの表示とbinding
-    ShowOwapoteNews(){
-        const language = localStorage.getItem("userLanguage");
-        $.ajax({
-            url: "./../json/owapoteNews.json",
-            dataType: "json",
-            type: "GET",
-        }).done((data) => {
-            const targetNode = document.getElementById("owapoteNews");
-            this.selectedLanguage(language);
-            this.owapoteNews(data.owapoteNews);
-            const viewModel = {
-                selectedLanguage: this.selectedLanguage,
-                owapoteNews: this.owapoteNews
-            };
-            this.RemoveBinding(targetNode);
-            this.ApplyBindingsOnce(viewModel,targetNode);
-        });
-    }
+    async ShowViewModel(viewModelClass, targetNodeID){
+        this.selectedLanguage(localStorage.getItem("userLanguage"));
+        const targetNode = document.querySelector(targetNodeID);
 
-    //bindingの解除
-    RemoveBinding(targetNode){
-        if(this.hasBound){
-            ko.cleanNode(targetNode);
-            this.hasBound = false;
+        const viewModel = new viewModelClass(this.selectedLanguage);
+        if(viewModel){
+            await viewModel.Load();
+            this.ApplyBindingsToNode(viewModel,targetNode);
         }
     }
 }

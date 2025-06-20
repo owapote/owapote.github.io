@@ -4,11 +4,11 @@ import { InterestListPage } from "./interestList.js";
 import { ContactFormPage } from "./contactForm.js";
 import { SelectableLanguage } from "./websiteModule.js";
 import { MenuKind } from "./websiteModule.js";
-import { HashBinding } from "./hashBinding.js";
+import { HashBinding, OwapoteNewsViewModel } from "./hashBinding.js";
 import { YouTubeAPI }   from "./youtubeAPI.js";
 
 const binder = new HashBinding();
-const youtubeAPI = new YouTubeAPI;
+const youtubeAPI = new YouTubeAPI();
 
 const playlistIds  = Object.freeze({
     "YukariGeoGuessrShorts" : "PLYKfT5xUBiECfMwMC2bsAGemA9TAnGzdg",
@@ -79,17 +79,25 @@ function AddToChangeLanguageEvent(){
                 $("#contactFormNav").text(json["contactFormNav"][language]);
             });
         }
+
+        async function LoadHeaderTranslate() {
+            try {
+                const response = await $.ajax({
+                    url: "./../json/header.json",
+                    dataType: "json",
+                    type: "GET",
+                });
+                Translate(response);
+            } catch (error) {
+                console.error("headerのTranslateに失敗しました:", error);
+            }
+        }
+
         //初期設定
         language = localStorage.getItem("userLanguage");
         if(language == null) language = SelectableLanguage.Japanese;
         else $("#languageSelector").val(language);
-        $.ajax({
-            url: "./../json/header.json",
-            dataType: "json",
-            type: "GET",
-        }).done(function (data){
-            Translate(data);
-        });
+        LoadHeaderTranslate();
 
         //イベント
         $("#languageSelector").change(function() {
@@ -100,13 +108,7 @@ function AddToChangeLanguageEvent(){
                 language = getLanguage;
                 localStorage.setItem("userLanguage",language);
 
-                $.ajax({
-                    url: "./../json/header.json",
-                    dataType: "json",
-                    type: "GET",
-                }).done(function (data){
-                    Translate(data);
-                });
+                LoadHeaderTranslate();
             }else{
                 alert("This language cannot selected:" + SelectableLanguage[getLanguage]);
             }
@@ -164,7 +166,7 @@ function AddToChangeContentWithButton(menuNum){
         pageClass.ChangeContentsLanguage();
         //トップページのみ、最近のできごとを表示
         if(menuNum == MenuKind.TopPage){
-            binder.ShowOwapoteNews(menuNum);
+            binder.ShowViewModel(OwapoteNewsViewModel, "#owapoteNews");
             youtubeAPI.AppendIframesToContainer(playlistIds.YukariGeoGuessrShorts, "youtubeShortsGeoGuessrContents");
         }
     });
