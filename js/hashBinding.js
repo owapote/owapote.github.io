@@ -1,33 +1,3 @@
-class ViewModelBase{
-    constructor(selectedLanguage){
-        this.selectedLanguage = selectedLanguage;
-    }
-
-    async Load(){
-        throw new Error("派生クラスで実装をしてね");
-    }
-}
-
-export class OwapoteNewsViewModel extends ViewModelBase{
-    constructor(selectedLanguage){
-        super(selectedLanguage);
-        this.owapoteNews = ko.observableArray([]);
-    }
-
-    async Load(){
-        try {
-            const data = await $.ajax({
-                url: "./../json/owapoteNews.json",
-                dataType: "json",
-                type: "GET",
-            });
-            this.owapoteNews(data.owapoteNews);
-        } catch (error) {
-            console.error("owapoteNews.jsonの取得に失敗しました:", error);
-        }
-    }
-}
-
 export class HashBinding {
     constructor() {
         this.hasBoundNodes = new WeakMap(); //targetNode, boundFlag

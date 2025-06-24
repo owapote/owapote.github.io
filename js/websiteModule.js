@@ -6,7 +6,7 @@ const SelectableLanguage = Object.freeze({
 
 const MenuKind = Object.freeze({
     TopPage: 0,
-    description: 1,
+    Description: 1,
     InterestList: 2,
     ContactForm: 3,
 });

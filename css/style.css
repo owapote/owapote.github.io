@@ -51,6 +51,7 @@ h1{
     transition: none;
     border-left: solid 5px chocolate;
     border-bottom: solid 3px gray;
+    overflow-x: hidden;
 }
 
 .darkMode h1{

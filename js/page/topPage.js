@@ -1,4 +1,4 @@
-import { MainTemplate } from "./interface/mainTemplate.js";
+import { MainTemplate } from "./../interface/mainTemplate.js";
 
 export class TopPage extends MainTemplate{
     ChangeContentsLanguage(){
@@ -7,6 +7,6 @@ export class TopPage extends MainTemplate{
             $("#youtubeShortsGeoguessrText").text(json["youtubeShortsGeoguessrText"][language]);
             $("#recentTopicsText").text(json["recentTopicsText"][language]);
         }
-        super.ChangeLanguage(TranslateByPage,"./../json/topPage.json");
+        super.ChangeLanguage(TranslateByPage,"./../json/page/topPage.json");
     }
 }

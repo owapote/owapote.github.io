@@ -1,4 +1,4 @@
-import { MainTemplate } from "./interface/mainTemplate.js";
+import { MainTemplate } from "./../interface/mainTemplate.js";
 
 export class ContactFormPage extends MainTemplate{
     ChangeContentsLanguage(){
@@ -6,6 +6,6 @@ export class ContactFormPage extends MainTemplate{
             $("#contactMeText").text(json["contactMeText"][language]);
             $("#contactMeContent").text(json["contactMeContent"][language]);
         }
-        super.ChangeLanguage(TranslateByPage,"./../json/contactForm.json");
+        super.ChangeLanguage(TranslateByPage,"./../json/page/contactForm.json");
     }
 }

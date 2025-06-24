@@ -1,10 +1,11 @@
-import { TopPage } from "./topPage.js";
-import { DescriptionPage } from "./description.js";
-import { InterestListPage } from "./interestList.js";
-import { ContactFormPage } from "./contactForm.js";
+import { TopPage } from "./page/topPage.js";
+import { DescriptionPage } from "./page/description.js";
+import { InterestListPage } from "./page/interestList.js";
+import { ContactFormPage } from "./page/contactForm.js";
 import { SelectableLanguage } from "./websiteModule.js";
 import { MenuKind } from "./websiteModule.js";
-import { HashBinding, OwapoteNewsViewModel } from "./hashBinding.js";
+import { HashBinding } from "./hashBinding.js";
+import { OwapoteNewsViewModel } from "./viewModels.js";
 import { YouTubeAPI }   from "./youtubeAPI.js";
 
 const binder = new HashBinding();
@@ -130,37 +131,44 @@ function AddToChangeContentWithButton(menuNum){
         targetHTML.removeChild(targetHTML.firstChild);
     }
 
-    var usePathHTML;
-    var usePathCSS;
+    var usePathHTML = "./html/page/";
+    var usePathCSS = "./css/page/";
     var pageClass;
+    const extensionHTML = ".html";
+    const extensionCSS = ".css";
+
     //HACK:強度が低い
     switch(menuNum){
         case MenuKind.TopPage:
-            usePathHTML = "./html/topPage.html";
-            usePathCSS="./css/topPage.css";
+            usePathHTML += "topPage";
+            usePathCSS +="topPage";
             pageClass = new TopPage();
             break;
-        case MenuKind.description:
-            usePathHTML = "./html/description.html";
-            usePathCSS="./css/description.css";
+        case MenuKind.Description:
+            usePathHTML += "description";
+            usePathCSS +="description";
             pageClass = new DescriptionPage();
             break;
         case MenuKind.InterestList:
-            usePathHTML = "./html/interestList.html";
-            usePathCSS="./css/interestList.css";
+            usePathHTML += "interestList";
+            usePathCSS +="interestList";
             pageClass = new InterestListPage();
             break;
         case MenuKind.ContactForm:
-            usePathHTML = "./html/contactForm.html";
-            usePathCSS="./css/contactForm.css";
+            usePathHTML += "contactForm";
+            usePathCSS +="contactForm";
             pageClass = new ContactFormPage();
             break;
         default:
-            usePathHTML = "./html/topPage.html";
-            usePathCSS="./css/topPage.css";
+            usePathHTML += "topPage";
+            usePathCSS +="topPage";
             pageClass = new TopPage();
             break;
     }
+    //拡張子を付与
+    usePathHTML += extensionHTML;
+    usePathCSS  += extensionCSS;
+
     localStorage.setItem("nowContent", menuNum);
     $(targetHTML).load(usePathHTML,function(){
         pageClass.ChangeContentsLanguage();
