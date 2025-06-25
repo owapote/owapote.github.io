@@ -17,16 +17,18 @@
 
     <article>
         <h1  id="recentTopicsText"></h1>
-        <div id="owapoteNews" data-bind="foreach: owapoteNews">
-            <a data-bind="attr:{href: url}" class="owapoteNewsContent">
-                <div class="owapoteNewsContentBackGround">
-                    <img data-bind="attr:{src: imagePath}">
-                    <div>
-                        <h2 data-bind="text: title[$parent.selectedLanguage()]"></h2>
-                        <p  data-bind="text: description[$parent.selectedLanguage()]"></p>
+        <div id="owapoteNews">
+            <div v-for="(item, index) in owapoteNews" :key="index">
+                <a v-bind:href="item.url" class="owapoteNewsContent">
+                    <div class="owapoteNewsContentBackGround">
+                        <img v-bind:src="item.imagePath">
+                        <div>
+                            <h2>{{item.title[selectedLanguage.value]}}</h2>
+                            <p>{{item.description[selectedLanguage.value]}}</p>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
         </div>
     </article>
 </div>

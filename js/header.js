@@ -5,7 +5,7 @@ import { ContactFormPage } from "./page/contactForm.js";
 import { SelectableLanguage } from "./websiteModule.js";
 import { MenuKind } from "./websiteModule.js";
 import { HashBinding } from "./hashBinding.js";
-import { OwapoteNewsViewModel } from "./viewModels.js";
+import { OwapoteNewsComponent } from "./components.js";
 import { YouTubeAPI }   from "./youtubeAPI.js";
 
 const binder = new HashBinding();
@@ -174,7 +174,7 @@ function AddToChangeContentWithButton(menuNum){
         pageClass.ChangeContentsLanguage();
         //トップページのみ、最近のできごとを表示
         if(menuNum == MenuKind.TopPage){
-            binder.ShowViewModel(OwapoteNewsViewModel, "#owapoteNews");
+            binder.ShowViewModel(OwapoteNewsComponent, "#owapoteNews");
             youtubeAPI.AppendIframesToContainer(playlistIds.YukariGeoGuessrShorts, "youtubeShortsGeoGuessrContents");
         }
     });
