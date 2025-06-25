@@ -13,7 +13,7 @@ export class HashBinding {
         this.hasBoundNodes.set(targetNode, true);
     }
 
-    //owapoteNewsの表示とbinding
+    //ViewModelの表示とbinding
     async ShowViewModel(viewModelClass, targetNodeID){
         this.selectedLanguage(localStorage.getItem("userLanguage"));
         const targetNode = document.querySelector(targetNodeID);
