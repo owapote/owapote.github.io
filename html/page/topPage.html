@@ -4,14 +4,9 @@
 
     <h1 id="youtubeShortsGeoguessrText"></h1>
     <div id="topPageSlideShow">
-        <ul></ul>
-        <script>
-            $(function(){
-                for(i=1;i<=10;i++){
-                    $("#topPageSlideShow ul").append("<li>今、結月ゆかり(雫)GeoGuessrがアツい！</li>");
-                }
-            }); 
-        </script>
+        <ul id="#topPageSlideShow">
+            <li v-for="index in 10" :key="index">今、結月ゆかり(雫)GeoGuessrがアツい！</li>
+        </ul>
     </div>
     <div id="youtubeShortsGeoGuessrContents"></div>
 
