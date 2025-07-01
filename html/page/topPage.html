@@ -8,7 +8,7 @@
             <li v-for="index in 10" :key="index">今、結月ゆかり(雫)GeoGuessrがアツい！</li>
         </ul>
     </div>
-    <div id="youtubeShortsGeoGuessrContents"></div>
+    <!--<div id="youtubeShortsGeoGuessrContents"></div>-->
 
     <article>
         <h1  id="recentTopicsText"></h1>
@@ -18,8 +18,8 @@
                     <div class="owapoteNewsContentBackGround">
                         <img v-bind:src="item.imagePath">
                         <div>
-                            <h2>{{item.title[selectedLanguage.value]}}</h2>
-                            <p>{{item.description[selectedLanguage.value]}}</p>
+                            <h2>{{item.title[language]}}</h2>
+                            <p>{{item.description[language]}}</p>
                         </div>
                     </div>
                 </a>

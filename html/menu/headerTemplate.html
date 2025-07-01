@@ -6,20 +6,22 @@
         <h1>owapote</h1>
     </div>
     <div id="headerUniqueButton">
-        <button id="colorThemeToggleButton" class="enableTransition"></button>
-        <select id="languageSelector">
-            <option value="jp" selected>日本語</option>
-            <option value="en">English</option>
-            <option value="tok">toki pona</option>
-        </select>
+        <button id="colorThemeToggleButton" class="enableTransition" @click="onChange"></button>
+        <div id="languageSelector">
+            <select @change="onChange" :value="language">
+                <option value="jp" selected>日本語</option>
+                <option value="en">English</option>
+                <option value="tok">toki pona</option>
+            </select>
+        </div>
     </div>
 </header>
 
-<div id="headerJumpContentButtons">
-    <button id="topPageNav"      onclick="AddToChangeContentWithButton(0)"></button>
-    <button id="descriptionNav"  onclick="AddToChangeContentWithButton(1)"></button>
-    <button id="interestListNav" onclick="AddToChangeContentWithButton(2)"></button>
-    <button id="contactFormNav"  onclick="AddToChangeContentWithButton(3)"></button>
+<div id="headerPageJumpButtons">
+    <button @click="onClick(MenuKind.TopPage)"     >{{headerNav?.topPageNav?.     [language]}}</button>
+    <button @click="onClick(MenuKind.Description)" >{{headerNav?.descriptionNav?. [language]}}</button>
+    <button @click="onClick(MenuKind.InterestList)">{{headerNav?.interestListNav?.[language]}}</button>
+    <button @click="onClick(MenuKind.ContactForm)" >{{headerNav?.contactFormNav?. [language]}}</button>
 </div>
 
 <div id="headerBannerImage">

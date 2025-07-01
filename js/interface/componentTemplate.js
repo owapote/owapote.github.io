@@ -1,8 +1,5 @@
 export const ComponentBaseMixin = {
-    props:["selectedLanguage"],
-    data(){
-        return {};
-    },
+    inject: ["language"],
     methods: {
         async Load(){
             throw new Error("派生クラスで実装をしてね");

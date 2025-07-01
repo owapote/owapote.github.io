@@ -84,12 +84,13 @@ header h1{
     height:     auto;
 }
 
-#languageSelector{
+#languageSelector select{
     height: 34px;
     width:  95px;
     padding-left: 5px;
     border: 2px solid black;
     border-radius: 100px;
+    color: black;
     
     /*標準の矢印を消す*/
     -webkit-appearance: none;
@@ -102,14 +103,18 @@ header h1{
     background-size: 16px 16px;
 }
 
-.enableTransition #languageSelector{
+.enableTransition #languageSelector select{
     transition: border 0.8s;
 }
 
-.darkMode #languageSelector{
+.darkMode #languageSelector select{
     border: 2px double white;
     background-image: url(./../image/icon/dropDownArrow_night.svg);
 }
+
+/*--------------------*/
+/*　カラーテーマ切り替え  */
+/*--------------------*/
 
 #colorThemeToggleButton{
     z-index: 0;
@@ -163,14 +168,14 @@ header h1{
 /*-------------*/
 /*　　 ボタン　　*/
 /*-------------*/
-div #headerJumpContentButtons{
+div #headerPageJumpButtons{
     border-top:    solid 5px #ccc;
     list-style-type:none;
     justify-content: space-evenly;
     display: flex;
 }
 
-#headerJumpContentButtons button{
+#headerPageJumpButtons button{
     box-shadow: none;
     border: none;
     width: 100%;
@@ -180,20 +185,20 @@ div #headerJumpContentButtons{
     font-size: 14px;
 }
 
-#headerJumpContentButtons button+button{
+#headerPageJumpButtons button+button{
     border-left: solid 5px #ccc;
 }
 
-.darkMode #headerJumpContentButtons button{
+.darkMode #headerPageJumpButtons button{
     background-color: powderblue;
 }
 
-#headerJumpContentButtons button:hover{
+#headerPageJumpButtons button:hover{
     font-weight: bold;
     background-color:peachpuff;
 }
 
-.darkMode #headerJumpContentButtons button:hover{
+.darkMode #headerPageJumpButtons button:hover{
     font-weight: bold;
     background-color: lightskyblue;
 }

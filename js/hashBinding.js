@@ -1,11 +1,11 @@
 export class HashBinding {
     constructor() {
-        this.hasBoundNodes = new WeakMap(); //targetNode, boundFlag
-        this.selectedLanguage = Vue.ref(localStorage.getItem("userLanguage"));
+        this.hasBoundNodes = new WeakMap(); //targetNode, VueApp
+        this.language = Vue.ref(localStorage.getItem("userLanguage"));
     }
 
     // 多重バインドされないapplyBindings
-    ApplyBindingsToNode(componentOptions, targetNode, componentDefinition) {
+    ApplyBindingsToNode(targetNode, componentDefinition) {
         if(this.hasBoundNodes.get(targetNode)){
             //ko.cleanNode(targetNode);
             //に相当
@@ -14,29 +14,24 @@ export class HashBinding {
         }
         //ko.applyBindings(viewModel, targetNode);
         //に相当
-        const app = Vue.createApp(componentDefinition,componentOptions);
+        const app = Vue.createApp(componentDefinition);
+        app.provide("language",this.language);
         app.mount(targetNode);
 
-        this.hasBoundNodes.set(targetNode, true);
+        this.hasBoundNodes.set(targetNode, app);
     }
 
-    //ViewModelの表示とbinding
-    async ShowViewModel(componentModule, targetNodeID){
-        this.selectedLanguage.value = localStorage.getItem("userLanguage");
+    //Componentの表示とbinding
+    async ShowComponent(componentModule, targetNodeID){
+        this.language.value = localStorage.getItem("userLanguage");
         const targetNode = document.querySelector(targetNodeID);
 
-        //const viewModel = new viewModelClass(this.selectedLanguage);
-        //に相当する
         const componentDefinition = componentModule;
-        const componentOptions = {selectedLanguage: this.selectedLanguage};
-
-        console.log(componentDefinition);
         if(componentDefinition){
             if(componentDefinition.methods && componentDefinition.methods.Load){
-                await componentDefinition.methods.Load.call(componentOptions);
+                await componentDefinition.methods.Load();
             }
-            this.ApplyBindingsToNode(componentOptions,targetNode,componentDefinition);
+            this.ApplyBindingsToNode(targetNode,componentDefinition);
         }
-
     }
 }
