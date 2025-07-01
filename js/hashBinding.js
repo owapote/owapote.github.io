@@ -7,13 +7,9 @@ export class HashBinding {
     // 多重バインドされないapplyBindings
     ApplyBindingsToNode(targetNode, componentDefinition) {
         if(this.hasBoundNodes.get(targetNode)){
-            //ko.cleanNode(targetNode);
-            //に相当
             const prevApp = this.hasBoundNodes.get(targetNode);
             prevApp.unmount();
         }
-        //ko.applyBindings(viewModel, targetNode);
-        //に相当
         const app = Vue.createApp(componentDefinition);
         app.provide("language",this.language);
         app.mount(targetNode);

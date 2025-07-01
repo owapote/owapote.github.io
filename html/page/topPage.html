@@ -4,26 +4,31 @@
 
     <h1 id="youtubeShortsGeoguessrText"></h1>
     <div id="topPageSlideShow">
-        <ul id="#topPageSlideShow">
-            <li v-for="index in 10" :key="index">今、結月ゆかり(雫)GeoGuessrがアツい！</li>
+        <ul>
+            <li v-for="n in 10">
+                今、結月ゆかり(雫)GeoGuessrがアツい！
+            </li>
         </ul>
     </div>
+    <script>
+        Vue.createApp({}).mount("#topPageSlideShow");
+    </script>
     <!--<div id="youtubeShortsGeoGuessrContents"></div>-->
 
     <article>
         <h1  id="recentTopicsText"></h1>
-        <div id="owapoteNews">
+        <section id="owapoteNews">
             <div v-for="(item, index) in owapoteNews" :key="index">
                 <a v-bind:href="item.url" class="owapoteNewsContent">
-                    <div class="owapoteNewsContentBackGround">
+                    <section class="owapoteNewsContentBackGround">
                         <img v-bind:src="item.imagePath">
-                        <div>
+                        <section>
                             <h2>{{item.title[language]}}</h2>
                             <p>{{item.description[language]}}</p>
-                        </div>
-                    </div>
+                        </section>
+                    </section>
                 </a>
             </div>
-        </div>
+        </section>
     </article>
 </div>

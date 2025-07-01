@@ -3,7 +3,9 @@
         <a href="./../index.html">
             <div id="myIcon"></div>
         </a>
-        <h1>owapote</h1>
+        <h1>
+            <ruby>owapote<rp>(</rp><rt>おわぽて</rt><rp>)</rp> </ruby>
+        </h1>
     </div>
     <div id="headerUniqueButton">
         <button id="colorThemeToggleButton" class="enableTransition" @click="onChange"></button>
@@ -17,12 +19,12 @@
     </div>
 </header>
 
-<div id="headerPageJumpButtons">
+<nav id="headerPageJumpButtons">
     <button @click="onClick(MenuKind.TopPage)"     >{{headerNav?.topPageNav?.     [language]}}</button>
     <button @click="onClick(MenuKind.Description)" >{{headerNav?.descriptionNav?. [language]}}</button>
     <button @click="onClick(MenuKind.InterestList)">{{headerNav?.interestListNav?.[language]}}</button>
     <button @click="onClick(MenuKind.ContactForm)" >{{headerNav?.contactFormNav?. [language]}}</button>
-</div>
+</nav>
 
 <div id="headerBannerImage">
     <img src="./../image/header.png" height=auto></src>

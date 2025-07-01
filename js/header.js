@@ -102,8 +102,11 @@ function AddToChangeContentWithButton(menuNum){
             targetHTML.innerHTML = html;
             pageClass.ChangeContentsLanguage();
 
-            //トップページのみ、最近のできごとを表示
+            //HACK:トップページ限定の操作
             if(menuNum == MenuKind.TopPage){
+                //スライドショーの表示
+                Vue.createApp({}).mount("#topPageSlideShow");
+                //最近のできごとを表示
                 binder.ShowComponent(OwapoteNewsComponent, "#owapoteNews");
                 youtubeAPI.AppendIframesToContainer(PlaylistIds.YukariGeoGuessrShorts, "youtubeShortsGeoGuessrContents");
             }
