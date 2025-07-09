@@ -19,10 +19,18 @@ const PlaylistIds  = Object.freeze({
 });
 
 const PageName  = Object.freeze({
-    TopPage : "topPage",
-    DescriptionPage : "description",
-    InterestListPage : "interestList",
-    ContactFormPage : "contactForm",
+    [MenuKind.TopPage] : "topPage",
+    [MenuKind.DescriptionPage] : "description",
+    [MenuKind.InterestListPage] : "interestList",
+    [MenuKind.ContactFormPage] : "contactForm",
+});
+
+//Factory Patternを組む
+const PageFactory = Object.freeze({
+    [MenuKind.TopPage]: () => new TopPage(),
+    [MenuKind.DescriptionPage]: () => new DescriptionPage(),
+    [MenuKind.InterestListPage]: () => new InterestListPage(),
+    [MenuKind.ContactFormPage]: () => new ContactFormPage(),
 });
 
 //type=module対策
@@ -48,52 +56,24 @@ function AddToChangeContentWithButton(menuNum){
 
     const targetHTML = document.getElementById("mainTemplate");
     const targetCSS = document.getElementById("loadCSSForContent");
-
+    //mainの子をまっさらにする
     while(targetHTML.firstChild){
         targetHTML.removeChild(targetHTML.firstChild);
     }
 
-    var usePathHTML = "./html/page/";
-    var usePathCSS = "./css/page/";
-    var pageClass;
+    const usePathHTML = "./html/page/";
+    const usePathCSS = "./css/page/";
     const extensionHTML = ".html";
     const extensionCSS = ".css";
+    //各ページのHTMLとCSSの相対パスを取得
+    const pagePathHTML = getPagePath(usePathHTML, extensionHTML, menuNum);
+    const pagePathCSS = getPagePath(usePathCSS, extensionCSS, menuNum);
 
-    //HACK:強度が低い
-    switch(menuNum){
-        case MenuKind.TopPage:
-            usePathHTML += PageName.TopPage.toString();
-            usePathCSS +=  PageName.TopPage.toString();
-            pageClass = new TopPage();
-            break;
-        case MenuKind.Description:
-            usePathHTML += PageName.DescriptionPage.toString();
-            usePathCSS +=  PageName.DescriptionPage.toString();
-            pageClass = new DescriptionPage();
-            break;
-        case MenuKind.InterestList:
-            usePathHTML += PageName.InterestListPage.toString();
-            usePathCSS +=  PageName.InterestListPage.toString();
-            pageClass = new InterestListPage();
-            break;
-        case MenuKind.ContactForm:
-            usePathHTML += PageName.ContactFormPage.toString();
-            usePathCSS +=  PageName.ContactFormPage.toString();
-            pageClass = new ContactFormPage();
-            break;
-        default:
-            usePathHTML += PageName.TopPage.toString();
-            usePathCSS +=  PageName.TopPage.toString();
-            pageClass = new TopPage();
-            break;
-    }
-    //拡張子を付与
-    usePathHTML += extensionHTML;
-    usePathCSS  += extensionCSS;
+    const pageClass = (PageFactory[menuNum] || PageFactory[MenuKind.TopPage])();
 
     localStorage.setItem("nowContent", menuNum);
     
-    fetch(usePathHTML)
+    fetch(pagePathHTML)
         .then(response =>{
             if(!response.ok) throw new Error("HTMLの読み込みに失敗しました:",targetHTML);
             return response.text();
@@ -113,6 +93,22 @@ function AddToChangeContentWithButton(menuNum){
         })
         .catch(error=>{
             console.error("HTMLの挿入中にエラーが発生しました:",error);
-        })
-    targetCSS.href = usePathCSS;
+        });
+    //CSSの適用シートを変更
+    targetCSS.href = pagePathCSS;
+}
+
+function getPagePath(usePath, fileExtension, menuNum){
+    var retPath = usePath;
+
+    //memo:falsyでないことが大前提
+    if(PageName[menuNum]){
+        retPath += PageName[menuNum];
+    }else{
+        console.log(menuNum);
+        console.error("menuNum is not found.");
+    }
+    //拡張子を付与
+    retPath += fileExtension;
+    return retPath;
 }
