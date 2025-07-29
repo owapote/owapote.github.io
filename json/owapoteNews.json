@@ -1,8 +1,10 @@
 {
     "owapoteNews":[
         {
-            "url": "https://google.com/",
-            "imagePath": "./../image/icon/dropDownArrow_light.svg",
+            "imagePath":{
+                "lightMode": "./../image/icon/blogIcon_light.svg",
+                "nightMode": "./../image/icon/blogIcon_night.svg"
+            },
             "title":{
                 "jp": "web制作、楽しいです...！",
                 "en": "Making website is fun!",
@@ -15,8 +17,10 @@
             }
         },
         {
-            "url": "https://twitter.com/",
-            "imagePath": "./../image/icon/twitter.svg",
+            "imagePath":{
+                "lightMode": "./../image/icon/musicIcon_light.svg",
+                "nightMode": "./../image/icon/musicIcon_night.svg"
+            },
             "title":{
                 "jp": "ボカロ曲を鋭意制作中です！",
                 "en": "Making a vocaloid music now...",
@@ -29,8 +33,10 @@
             }
         },
         {
-            "url": "https://youtube.com/",
-            "imagePath": "./../image/icon/lightMode.svg",
+            "imagePath":{
+                "lightMode": "./../image/icon/movieIcon_light.svg",
+                "nightMode": "./../image/icon/movieIcon_night.svg"
+            },
             "title":{
                     "jp": "動画ができました！",
                     "en": "Hobby list",
@@ -43,8 +49,10 @@
             }
         },
         {
-            "url": "https://yahoo.com/",
-            "imagePath": "./../image/icon/nightMode.svg",
+            "imagePath":{
+                "lightMode": "./../image/icon/programIcon_light.svg",
+                "nightMode": "./../image/icon/programIcon_night.svg"
+            },
             "title":{
                 "jp": "暇です",
                 "en": "Freeeeee",
@@ -57,8 +65,10 @@
             }
         },
         {
-            "url": "https://www.nicovideo.jp/",
-            "imagePath": "./../image/icon/myIcon.png",
+            "imagePath":{
+                "lightMode": "./../image/icon/twitter.svg",
+                "nightMode": "./../image/icon/twitter.svg"
+            },
             "title":{
                 "jp": "大会に行きます",
                 "en": "Hobby list",

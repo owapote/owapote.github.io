@@ -2,6 +2,7 @@ import { TopPage } from "./page/topPage.js";
 import { DescriptionPage } from "./page/description.js";
 import { InterestListPage } from "./page/interestList.js";
 import { ContactFormPage } from "./page/contactForm.js";
+import { TopPageReLoadSetting } from "./page/topPage.js";
 import { SelectableLanguage } from "./websiteModule.js";
 import { MenuKind } from "./websiteModule.js";
 import { HashBinding } from "./hashBinding.js";
@@ -33,9 +34,25 @@ const PageFactory = Object.freeze({
     [MenuKind.ContactFormPage]: () => new ContactFormPage(),
 });
 
+//マッピングをしておく
+const TopPageContentsReloaders = [
+    {
+        flag: TopPageReLoadSetting.ShowSlideShow,
+        reloadFunc: () => Vue.createApp({}).mount("#topPageSlideShow")
+    },{
+        flag: TopPageReLoadSetting.ShowNews,
+        reloadFunc: () => binder.ShowComponent(OwapoteNewsComponent, "#owapoteNews")
+    },{
+        flag: TopPageReLoadSetting.ShowYouTubeContents,
+        reloadFunc: () => youtubeAPI.AppendIframesToContainer(PlaylistIds.YukariGeoGuessrShorts, "youtubeShortsGeoGuessrContents")
+    }
+];
+
 //type=module対策
 window.InitHeaderEvent = InitHeaderEvent;
 window.AddToChangeContentWithButton = AddToChangeContentWithButton;
+window.getPagePath = getPagePath;
+window.ReloadTopPageContents = ReloadTopPageContents;
 
 //ヘッダーの初期化
 function InitHeaderEvent(){
@@ -47,31 +64,30 @@ function InitHeaderEvent(){
     binder.ShowComponent(LanguageSelectorComponent, "#languageSelector");
     binder.ShowComponent(HeaderNavComponent, "#headerPageJumpButtons");
 
-    AddToChangeContentWithButton(MenuKind.TopPage);
+    //TopPageReLoadSettingのフラグを全て立てる
+    const allFlags = Object.values(TopPageReLoadSetting).reduce((acc, val) => acc | val, 0);
+    AddToChangeContentWithButton(MenuKind.TopPage, allFlags);
     youtubeAPI.GetYouTubePlayListVideo(PlaylistIds.YukariGeoGuessrShorts, 3);
 }
 
-//ボタンに応じて表示内容を切り替える
-function AddToChangeContentWithButton(menuNum){
-
+/**
+ * ボタンに応じて表示内容を切り替える
+ * @param {*} menuNum MenuKind、もしくはその範囲内の整数
+ * @param {*} topPageReLoadSetting ビット管理している
+ */
+function AddToChangeContentWithButton(menuNum, topPageReLoadSetting){
     const targetHTML = document.getElementById("mainTemplate");
     const targetCSS = document.getElementById("loadCSSForContent");
-    //mainの子をまっさらにする
-    while(targetHTML.firstChild){
-        targetHTML.removeChild(targetHTML.firstChild);
-    }
 
     const usePathHTML = "./html/page/";
     const usePathCSS = "./css/page/";
     const extensionHTML = ".html";
     const extensionCSS = ".css";
     //各ページのHTMLとCSSの相対パスを取得
-    const pagePathHTML = getPagePath(usePathHTML, extensionHTML, menuNum);
-    const pagePathCSS = getPagePath(usePathCSS, extensionCSS, menuNum);
+    const pagePathHTML = getPagePath(menuNum, usePathHTML, extensionHTML);
+    const pagePathCSS  = getPagePath(menuNum, usePathCSS , extensionCSS);
 
     const pageClass = (PageFactory[menuNum] || PageFactory[MenuKind.TopPage])();
-
-    localStorage.setItem("nowContent", menuNum);
     
     fetch(pagePathHTML)
         .then(response =>{
@@ -79,16 +95,14 @@ function AddToChangeContentWithButton(menuNum){
             return response.text();
         })
         .then(html=>{
-            targetHTML.innerHTML = html;
+            //if(menuNum == localStorage.getItem("nowContent")){
+                targetHTML.innerHTML = html;
             pageClass.ChangeContentsLanguage();
+            //}
 
             //HACK:トップページ限定の操作
             if(menuNum == MenuKind.TopPage){
-                //スライドショーの表示
-                Vue.createApp({}).mount("#topPageSlideShow");
-                //最近のできごとを表示
-                binder.ShowComponent(OwapoteNewsComponent, "#owapoteNews");
-                youtubeAPI.AppendIframesToContainer(PlaylistIds.YukariGeoGuessrShorts, "youtubeShortsGeoGuessrContents");
+                ReloadTopPageContents(topPageReLoadSetting);
             }
         })
         .catch(error=>{
@@ -96,16 +110,36 @@ function AddToChangeContentWithButton(menuNum){
         });
     //CSSの適用シートを変更
     targetCSS.href = pagePathCSS;
+    
+    localStorage.setItem("nowContent", menuNum);
 }
 
-function getPagePath(usePath, fileExtension, menuNum){
+/**
+ * TopPage内のコンテンツを再読み込みする
+ * @param {*} topPageReLoadSetting ビット管理している
+ */
+function ReloadTopPageContents(topPageReLoadSetting){
+    for(const item of TopPageContentsReloaders){
+        if(topPageReLoadSetting & item.flag){
+            item.reloadFunc();
+        }
+    }
+}
+
+/**
+ * 各MenuKindに応じたHTMLやCSSのパスを出力する
+ * @param {*} menuNum MenuKind、もしくはその範囲内の整数
+ * @param {*} usePath ファイルまでのパス
+ * @param {*} fileExtension 拡張子
+ * @returns 相対パス
+ */
+function getPagePath(menuNum, usePath, fileExtension){
     var retPath = usePath;
 
     //memo:falsyでないことが大前提
     if(PageName[menuNum]){
         retPath += PageName[menuNum];
     }else{
-        console.log(menuNum);
         console.error("menuNum is not found.");
     }
     //拡張子を付与

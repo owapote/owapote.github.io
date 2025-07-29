@@ -1,17 +1,110 @@
 @keyframes slideShowFromLtoR {
-    from {
-        transform: translateX(0%);
-    }
-    to {
-        transform: translateX(100%);
-    }
+  from {
+      transform: translateX(0%);
+  }
+  to {
+      transform: translateX(100%);
+  }
 }
 
 @keyframes slideShowFromRtoL {
-    from {
-        transform: translateX(0%);
-    }
-    to {
-        transform: translateX(-100%);
-    }
+  from {
+      transform: translateX(0%);
+  }
+  to {
+      transform: translateX(-100%);
+  }
+}
+
+/*ニュースのポップアップ*/
+@keyframes owapoteNewsModalFadeIn {
+  from {
+    background: rgba(0, 0, 0, 0);
+  }
+  to {
+    background: rgba(0, 0, 0, 0.7);
+  }
+}
+
+@keyframes owapoteNewsModalFadeOut {
+  from {
+    background: rgba(0, 0, 0, 0.7);
+  }
+  to {
+    background: rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes owapoteNewsModalBackgroundFadeIn {
+  from {
+    transform:scale(0);
+    background-color: transparent;
+  }
+  to {
+    transform:scale(1);
+    background-color: white;
+  }
+}
+
+@keyframes owapoteNewsModalBackgroundFadeOut {
+  from {
+    transform:scale(1);
+    background-color: white;
+  }
+  to {
+    transform:scale(0);
+    background-color: transparent;
+  }
+}
+
+@keyframes owapoteNewsModalContentFadeIn {
+  from {
+    opacity: 0;
+    top: -20px;
+  }
+  to {
+    opacity: 1;
+    top: 0;
+  }
+}
+
+@keyframes owapoteNewsModalContentFadeOut {
+  from {
+    opacity: 1;
+    top: 0px;
+  }
+  to {
+    opacity: 0;
+    top: -20px;
+  }
+}
+
+@keyframes owapoteNewsModalSketchIn {
+  from {
+    stroke-dashoffset: 778;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes owapoteNewsModalSketchOut {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 778;
+  }
+}
+
+@keyframes owapoteNewsModalCollapseFast {
+  0% {
+    transform: scale(1);
+  }
+  90% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
 }

@@ -1,6 +1,13 @@
 import { SelectableLanguage } from "../websiteModule.js";
 import { MainTemplate } from "./../interface/mainTemplate.js";
 
+export const TopPageReLoadSetting = Object.freeze({
+    None: 1<<0,
+    ShowSlideShow: 1<<1,
+    ShowYouTubeContents: 1<<2,
+    ShowNews: 1<<3,
+});
+
 export class TopPage extends MainTemplate{
     ChangeContentsLanguage(){
         function TranslateByPage(json,language){

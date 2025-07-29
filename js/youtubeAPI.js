@@ -3,9 +3,11 @@ export class YouTubeAPI{
         this.iframeCaches = new Map();
     }
 
-    //APIリクエストを送信し、動画データを取得(初回のみ)
-    //  ->playlistId：再生リストのID
-    //  ->maxResults：取得する動画の最大件数
+    /**
+     * APIリクエストを送信して動画データを取得する(初回のみ)
+     * @param {*} playlistId 再生リストのID
+     * @param {*} maxResults 取得する動画の最大件数
+     */
     GetYouTubePlayListVideo(playlistId, maxResults){
         const worksName = "owapoteweb"; //works名
         const uniqueId = "owapote0914"; //名前+ランダム付与されたID(discord的な)
@@ -42,9 +44,12 @@ export class YouTubeAPI{
         });
     }
 
-    //GetYouTubePlayListVideoで取得した動画をHTMLに追加する
-    //  ->playlistId ：再生リストのID
-    //  ->containerId：タグのID
+    /**
+     * GetYouTubePlayListVideo()で取得した動画をHTMLに追加する
+     * @param {*} playlistId 再生リストのID
+     * @param {*} containerId タグのID
+     * @returns 
+     */
     AppendIframesToContainer(playlistId, containerId) {
         const container = document.getElementById(containerId);
 
