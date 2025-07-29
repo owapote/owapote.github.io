@@ -19,8 +19,7 @@
         <h1  id="recentTopicsText"></h1>
         <section id="owapoteNews">
             <!--ニュースのポップアップ-->
-            <div id="modalWrapperSketch" v-if="activeNews"
-            :class="{out: isClosing}">
+            <div id="modalWrapperSketch" v-if="activeNews" :class="{out: isClosing}">
                 <div class="modalBackground" @click.self="CloseOwapoteNewsModal">
                     <div class="modal">
                         <h2>{{activeNews.title[language]}}</h2>

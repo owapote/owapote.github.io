@@ -3,13 +3,12 @@ main{
 }
 
 main h1{
-    width: 350px;
     margin-top:   5px;
     margin-left:  5px;
     padding-left: 6px;
     font-size:   clamp(20px,5vw,32px);
-    height:      clamp(30px,7vw,40px);
-    line-height: clamp(30px,7vw,40px);
+    height:      clamp(30px,8vw,48px);
+    line-height: clamp(30px,8vw,45px);
     background-color: bisque;
     color: chocolate;
     transition: none;
