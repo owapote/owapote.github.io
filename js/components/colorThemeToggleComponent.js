@@ -1,5 +1,5 @@
 import { ComponentBaseMixin } from "../interface/componentTemplate.js";
-import { TopPageReLoadSetting } from "./../page/topPage.js";
+import { TopPageReloadSetting } from "./../page/topPage.js";
 
 export const ColorThemeToggleComponent = {
     mixins:[ComponentBaseMixin],
@@ -44,7 +44,7 @@ export const ColorThemeToggleComponent = {
                 document.body.classList.add("darkMode");
             }
             const menuNum = localStorage.getItem("nowContent");
-            const allFlags = Object.values(TopPageReLoadSetting).reduce((acc, val) => acc | val, 0);
+            const allFlags = Object.values(TopPageReloadSetting).reduce((acc, val) => acc | val, 0);
             AddToChangeContentWithButton(menuNum, allFlags);
         }
     }

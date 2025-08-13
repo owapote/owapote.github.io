@@ -21,8 +21,6 @@ export class MainTemplate{
         language = localStorage.getItem("userLanguage");
         if(!language) language = SelectableLanguage.Japanese;
         else {
-            //$("#languageSelector").val(language);
-            //と同義
             const selector = document.getElementById("languageSelector");
             if(selector) selector.value = language;
         }

@@ -1,5 +1,5 @@
 import { ComponentBaseMixin } from "../interface/componentTemplate.js"
-import { TopPageReLoadSetting } from "./../page/topPage.js";
+import { TopPageReloadSetting } from "./../page/topPage.js";
 import { SelectableLanguage } from "../websiteModule.js";
 
 export const LanguageSelectorComponent = {
@@ -18,7 +18,7 @@ export const LanguageSelectorComponent = {
                 document.documentElement.lang = newLang;
 
                 const current = Number(localStorage.getItem("nowContent"));
-                const allFlags = Object.values(TopPageReLoadSetting).reduce((acc, val) => acc | val, 0);
+                const allFlags = Object.values(TopPageReloadSetting).reduce((acc, val) => acc | val, 0);
                 AddToChangeContentWithButton(current, allFlags);
             } else {
                 alert("This language cannot be selected: " + newLang);

@@ -1,6 +1,6 @@
 import { ComponentBaseMixin } from "../interface/componentTemplate.js";
 import { MenuKind } from "../websiteModule.js";
-import { TopPageReLoadSetting } from "./../page/topPage.js";
+import { TopPageReloadSetting } from "./../page/topPage.js";
 import { SelectableLanguage } from "../websiteModule.js";
 
 export const HeaderNavComponent = {
@@ -27,7 +27,7 @@ export const HeaderNavComponent = {
         },
         onClick(menuKind){
             //TopPageReLoadSettingのフラグを全て立てる
-            const allFlags = Object.values(TopPageReLoadSetting).reduce((acc, val) => acc | val, 0);
+            const allFlags = Object.values(TopPageReloadSetting).reduce((acc, val) => acc | val, 0);
             AddToChangeContentWithButton(menuKind, allFlags);
         }
     }

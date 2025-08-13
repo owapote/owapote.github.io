@@ -1,7 +1,7 @@
 import { SelectableLanguage } from "../websiteModule.js";
 import { MainTemplate } from "./../interface/mainTemplate.js";
 
-export const TopPageReLoadSetting = Object.freeze({
+export const TopPageReloadSetting = Object.freeze({
     None: 1<<0,
     ShowSlideShow: 1<<1,
     ShowYouTubeContents: 1<<2,
@@ -13,7 +13,8 @@ export class TopPage extends MainTemplate{
         function TranslateByPage(json,language){
             document.getElementById("welcomeText").textContent = json["welcomeText"][language];
             document.getElementById("youtubeShortsGeoguessrText").textContent = json["youtubeShortsGeoguessrText"][language];
-            document.getElementById("recentTopicsText").textContent = json["recentTopicsText"][language];
+            document.getElementById("yukariGeoGuessrText").textContent = json["yukariGeoGuessrText"][language];
+            document.getElementById("owapoteNewsText").textContent = json["owapoteNewsText"][language];
         }
         super.ChangeLanguage(TranslateByPage,"./../json/page/topPage.json");
     }

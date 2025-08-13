@@ -2,7 +2,7 @@ import { TopPage } from "./page/topPage.js";
 import { DescriptionPage } from "./page/description.js";
 import { InterestListPage } from "./page/interestList.js";
 import { ContactFormPage } from "./page/contactForm.js";
-import { TopPageReLoadSetting } from "./page/topPage.js";
+import { TopPageReloadSetting } from "./page/topPage.js";
 import { SelectableLanguage } from "./websiteModule.js";
 import { MenuKind } from "./websiteModule.js";
 import { HashBinding } from "./hashBinding.js";
@@ -37,13 +37,13 @@ const PageFactory = Object.freeze({
 //マッピングをしておく
 const TopPageContentsReloaders = [
     {
-        flag: TopPageReLoadSetting.ShowSlideShow,
+        flag: TopPageReloadSetting.ShowSlideShow,
         reloadFunc: () => Vue.createApp({}).mount("#topPageSlideShow")
     },{
-        flag: TopPageReLoadSetting.ShowNews,
+        flag: TopPageReloadSetting.ShowNews,
         reloadFunc: () => binder.ShowComponent(OwapoteNewsComponent, "#owapoteNews")
     },{
-        flag: TopPageReLoadSetting.ShowYouTubeContents,
+        flag: TopPageReloadSetting.ShowYouTubeContents,
         reloadFunc: () => youtubeAPI.AppendIframesToContainer(PlaylistIds.YukariGeoGuessrShorts, "youtubeShortsGeoGuessrContents")
     }
 ];
@@ -64,8 +64,8 @@ function InitHeaderEvent(){
     binder.ShowComponent(LanguageSelectorComponent, "#languageSelector");
     binder.ShowComponent(HeaderNavComponent, "#headerPageJumpButtons");
 
-    //TopPageReLoadSettingのフラグを全て立てる
-    const allFlags = Object.values(TopPageReLoadSetting).reduce((acc, val) => acc | val, 0);
+    //TopPageReloadSettingのフラグを全て立てる
+    const allFlags = Object.values(TopPageReloadSetting).reduce((acc, val) => acc | val, 0);
     AddToChangeContentWithButton(MenuKind.TopPage, allFlags);
     youtubeAPI.GetYouTubePlayListVideo(PlaylistIds.YukariGeoGuessrShorts, 3);
 }
@@ -73,9 +73,9 @@ function InitHeaderEvent(){
 /**
  * ボタンに応じて表示内容を切り替える
  * @param {*} menuNum MenuKind、もしくはその範囲内の整数
- * @param {*} topPageReLoadSetting ビット管理している
+ * @param {*} topPageReloadSetting ビット管理している
  */
-function AddToChangeContentWithButton(menuNum, topPageReLoadSetting){
+function AddToChangeContentWithButton(menuNum, topPageReloadSetting){
     const targetHTML = document.getElementById("mainTemplate");
     const targetCSS = document.getElementById("loadCSSForContent");
 
@@ -102,7 +102,7 @@ function AddToChangeContentWithButton(menuNum, topPageReLoadSetting){
 
             //HACK:トップページ限定の操作
             if(menuNum == MenuKind.TopPage){
-                ReloadTopPageContents(topPageReLoadSetting);
+                ReloadTopPageContents(topPageReloadSetting);
             }
         })
         .catch(error=>{
@@ -116,11 +116,11 @@ function AddToChangeContentWithButton(menuNum, topPageReLoadSetting){
 
 /**
  * TopPage内のコンテンツを再読み込みする
- * @param {*} topPageReLoadSetting ビット管理している
+ * @param {*} topPageReloadSetting ビット管理している
  */
-function ReloadTopPageContents(topPageReLoadSetting){
+function ReloadTopPageContents(topPageReloadSetting){
     for(const item of TopPageContentsReloaders){
-        if(topPageReLoadSetting & item.flag){
+        if(topPageReloadSetting & item.flag){
             item.reloadFunc();
         }
     }

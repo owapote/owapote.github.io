@@ -9,7 +9,12 @@
         "en": "Most newest YouTube Shorts Movie",
         "tok": "kama pona e Owapote tomo!"
     },
-    "recentTopicsText":{
+    "yukariGeoGuessrText": {
+        "jp": "10秒で国を当てるゆかり(雫)シリーズ",
+        "en": "Yukari(Shizuku) GeoGuessr Series",
+        "tok": "jan Yukari GeoGuessr Series"
+    },
+    "owapoteNewsText":{
         "jp": "最近のできごと",
         "en": "Most recent topics",
         "tok": "pali pi tenpo pini sin"

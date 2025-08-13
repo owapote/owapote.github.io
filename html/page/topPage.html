@@ -13,10 +13,13 @@
     <script>
         Vue.createApp({}).mount("#topPageSlideShow");
     </script>
-    <div id="youtubeShortsGeoGuessrContents"></div>
+    <article>
+        <h1 id="yukariGeoGuessrText"></h1>
+        <div id="youtubeShortsGeoGuessrContents"></div>
+    </article>
 
     <article>
-        <h1  id="recentTopicsText"></h1>
+        <h1 id="owapoteNewsText"></h1>
         <section id="owapoteNews">
             <!--ニュースのポップアップ-->
             <div id="modalWrapperSketch" v-if="activeNews" :class="{out: isClosing}">
