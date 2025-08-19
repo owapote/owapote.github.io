@@ -3,9 +3,10 @@ import { MainTemplate } from "./../interface/mainTemplate.js";
 
 export const TopPageReloadSetting = Object.freeze({
     None: 1<<0,
-    ShowSlideShow: 1<<1,
-    ShowYouTubeContents: 1<<2,
-    ShowNews: 1<<3,
+    ShowHeaderNav: 1<<1,
+    ShowSlideShow: 1<<2,
+    ShowYouTubeContents: 1<<3,
+    ShowNews: 1<<4,
 });
 
 export class TopPage extends MainTemplate{

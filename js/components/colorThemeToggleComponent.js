@@ -1,51 +1,61 @@
-import { ComponentBaseMixin } from "../interface/componentTemplate.js";
+import { SetBaseFunction } from "../interface/componentTemplate.js";
 import { TopPageReloadSetting } from "./../page/topPage.js";
+import React from "react";
 
-export const ColorThemeToggleComponent = {
-    mixins:[ComponentBaseMixin],
-    data(){
-        return{
-            isDayMode:true,
-            colorTheme:localStorage.getItem("userColorTheme") || "lightMode"
-        };
-    },
-    //初期設定
-    mounted(){
+function ColorThemeToggleComponent(){
+    //初期設定 mounted
+    React.useEffect(() => {
         const button = document.querySelector("#colorThemeToggleButton");
-
-        if (this.colorTheme === "nightMode") {
-            this.isDayMode = false;
+        const colorTheme = localStorage.getItem("userColorTheme") || "lightMode";
+        if (colorTheme === "nightMode") {
             button?.classList.add("is-night");
             document.body.classList.add("darkMode");
+            SetUserColorThemeAndReload("nightMode");
         }
 
         //ページが読み込まれた瞬間はカラーテーマのtransitionをさせないようにしている
-        setTimeout(function(){
+        setTimeout(function() {
             document.body.classList.add("enableTransition");
-        },100);
+        }, 100);
 
         //静的HTMLに対してイベント登録
         if (button) {
-            button.addEventListener("click", this.onChange);
+            button.addEventListener("click", onChange);
         }
-    },
-    methods: {
-        //イベント
-        async onChange() {
-            this.isDayMode = !this.isDayMode;
-            const button = document.getElementById("colorThemeToggleButton");
-            if (this.isDayMode) {
-                localStorage.setItem("userColorTheme", "lightMode");
-                button?.classList.remove("is-night");
-                document.body.classList.remove("darkMode");
-            } else {
-                localStorage.setItem("userColorTheme", "nightMode");
-                button?.classList.add("is-night");
-                document.body.classList.add("darkMode");
+
+        //beforeUnmount
+        return () => {
+            if (button) {
+                button.removeEventListener("click", onChange);
             }
-            const menuNum = localStorage.getItem("nowContent");
-            const allFlags = Object.values(TopPageReloadSetting).reduce((acc, val) => acc | val, 0);
-            AddToChangeContentWithButton(menuNum, allFlags);
+        };
+    }, []);
+
+    //イベント
+    const onChange = async () => {
+        const button = document.getElementById("colorThemeToggleButton");
+        const colorTheme = localStorage.getItem("userColorTheme") || "lightMode";
+
+        if (colorTheme == "nightMode") {
+            button?.classList.remove("is-night");
+            document.body.classList.remove("darkMode");
+            SetUserColorThemeAndReload("lightMode");
+        } else {
+            button?.classList.add("is-night");
+            document.body.classList.add("darkMode");
+            SetUserColorThemeAndReload("nightMode");
         }
+    };
+
+    //設定と反映
+    function SetUserColorThemeAndReload(nextTheme){
+        localStorage.setItem("userColorTheme", nextTheme);
+
+        const menuNum  = localStorage.getItem("nowContent");
+        const allFlags = Object.values(TopPageReloadSetting).reduce((acc, val) => acc | val, 0);
+        AddToChangeContentWithButton(menuNum, allFlags);
     }
-};
+    return null;
+}
+
+export default SetBaseFunction(ColorThemeToggleComponent,()=>{});

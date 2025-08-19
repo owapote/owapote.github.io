@@ -3,48 +3,18 @@
     <p>owapoteについて解説をしています</p>
 
     <h1 id="youtubeShortsGeoguessrText"></h1>
-    <div id="topPageSlideShow">
-        <ul>
-            <li v-for="n in 10">
-                今、結月ゆかり(雫)GeoGuessrがアツい！
-            </li>
-        </ul>
-    </div>
-    <script>
-        Vue.createApp({}).mount("#topPageSlideShow");
-    </script>
+    <div id="topPageSlideShow"></div>
+
     <article>
         <h1 id="yukariGeoGuessrText"></h1>
         <div id="youtubeShortsGeoGuessrContents"></div>
     </article>
 
+    <!--ニュースのポップアップ-->
+    <div id="owapoteNewsModalRoot"></div>
+
     <article>
         <h1 id="owapoteNewsText"></h1>
-        <section id="owapoteNews">
-            <!--ニュースのポップアップ-->
-            <div id="modalWrapperSketch" v-if="activeNews" :class="{out: isClosing}">
-                <div class="modalBackground" @click.self="CloseOwapoteNewsModal">
-                    <div class="modal">
-                        <h2>{{activeNews.title[language]}}</h2>
-                        <p>{{activeNews.description[language]}}</p>
-                        <svg class="modal-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="none">
-                            <rect x="0" y="0" fill="none" width="100%" height="100%" rx="3" ry="3"></rect>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-
-            <div v-for="(item, id) in reversedOwapoteNews" :key="id">
-                <button @click="OpenOwapoteNewsModal(item)" class="owapoteNewsContent">
-                    <section class="owapoteNewsContentBackGround">
-                        <img v-bind:src="item.imagePath[colorTheme]">
-                        <section>
-                            <h2>{{item.title[language]}}</h2>
-                            <p>{{item.description[language]}}</p>
-                        </section>
-                    </section>
-                </button>
-            </div>
-        </section>
+        <section id="owapoteNews"></section>
     </article>
 </div>

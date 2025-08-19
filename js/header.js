@@ -1,16 +1,20 @@
-import { TopPage } from "./page/topPage.js";
-import { DescriptionPage } from "./page/description.js";
+import { TopPage }          from "./page/topPage.js";
+import { DescriptionPage }  from "./page/description.js";
 import { InterestListPage } from "./page/interestList.js";
-import { ContactFormPage } from "./page/contactForm.js";
+import { ContactFormPage }  from "./page/contactForm.js";
+
 import { TopPageReloadSetting } from "./page/topPage.js";
-import { SelectableLanguage } from "./websiteModule.js";
-import { MenuKind } from "./websiteModule.js";
+import { SelectableLanguage }   from "./websiteModule.js";
+import { MenuKind }    from "./websiteModule.js";
 import { HashBinding } from "./hashBinding.js";
-import { ColorThemeToggleComponent } from "./components/colorThemeToggleComponent.js";
-import { LanguageSelectorComponent } from "./components/languageSelectorComponent.js";
-import { OwapoteNewsComponent } from "./components/owapoteNewsComponents.js";
-import { HeaderNavComponent } from "./components/headerNavComponent.js";
-import { YouTubeAPI }   from "./youtubeAPI.js";
+import { YouTubeAPI }  from "./youtubeAPI.js";
+
+//default import
+import ColorThemeToggleComponent from "./components/colorThemeToggleComponent.js";
+import LanguageSelectorComponent from "./components/languageSelectorComponent.jsx";
+import OwapoteNewsComponent      from "./components/owapoteNewsComponents.jsx";
+import HeaderNavComponent        from "./components/headerNavComponent.jsx";
+import TopPageSlideShowComponent from "./components/topPageSlideShowComponent.jsx";
 
 const binder = new HashBinding();
 const youtubeAPI = new YouTubeAPI();
@@ -37,8 +41,11 @@ const PageFactory = Object.freeze({
 //マッピングをしておく
 const TopPageContentsReloaders = [
     {
+        flag: TopPageReloadSetting.ShowHeaderNav,
+        reloadFunc: () => binder.ShowComponent(HeaderNavComponent, "#headerPageJumpButtons")
+    },{
         flag: TopPageReloadSetting.ShowSlideShow,
-        reloadFunc: () => Vue.createApp({}).mount("#topPageSlideShow")
+        reloadFunc: () => binder.ShowComponent(TopPageSlideShowComponent, "#topPageSlideShow")
     },{
         flag: TopPageReloadSetting.ShowNews,
         reloadFunc: () => binder.ShowComponent(OwapoteNewsComponent, "#owapoteNews")
@@ -62,7 +69,6 @@ function InitHeaderEvent(){
     //Vue.jsでbinding
     binder.ShowComponent(ColorThemeToggleComponent, "#colorThemeToggleButton");
     binder.ShowComponent(LanguageSelectorComponent, "#languageSelector");
-    binder.ShowComponent(HeaderNavComponent, "#headerPageJumpButtons");
 
     //TopPageReloadSettingのフラグを全て立てる
     const allFlags = Object.values(TopPageReloadSetting).reduce((acc, val) => acc | val, 0);
