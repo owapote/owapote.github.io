@@ -1,5 +1,6 @@
 import { SetBaseFunction } from "../interface/componentTemplate.js";
 import React from "react";
+import ReactDOM from "react-dom";
 
 let _owapoteNewsCache = null;
 

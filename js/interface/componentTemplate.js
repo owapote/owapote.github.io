@@ -4,7 +4,7 @@ export function BaseLoadMustOverride() {
 }
 
 //Loadの静的付与(天才)
-export function SetBaseFunction(component, loadFunction=BaseLoadMustOverride) {
+export function SetBaseFunction(component, loadFunction = BaseLoadMustOverride) {
     component.Load = loadFunction;
     return component;
 }
