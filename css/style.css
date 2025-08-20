@@ -82,15 +82,12 @@ p{
 
 main {
     flex: 1;
-    /* width: 980px;
-    margin-left: -200px; */
-    
-    max-width: 980px;            /*[GPT]上限だけ固定*/
-    width: 100%;                 /*[GPT]端末幅に追従*/
-    box-sizing: border-box;      /*[GPT]はみ出し防止*/
-    margin: 0px auto;            /*既存の中央寄せは維持*/
-    padding-left: 10px;          /*[GPT]左右に少し余白（任意）*/
-    padding-right: 10px;         /*[GPT]左右に少し余白（任意）*/
+    max-width: 980px;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;      /*はみ出さないようにする*/
+    margin: 0px auto;
 }
 
 .darkMode p{

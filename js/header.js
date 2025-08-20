@@ -1,13 +1,8 @@
-import { TopPage }          from "./page/topPage.js";
-import { DescriptionPage }  from "./page/description.js";
-import { InterestListPage } from "./page/interestList.js";
-import { ContactFormPage }  from "./page/contactForm.js";
-
+import {binder, youtubeAPI} from "./src/singleInstanceService.js";
 import { TopPageReloadSetting } from "./page/topPage.js";
 import { SelectableLanguage }   from "./websiteModule.js";
 import { MenuKind }    from "./websiteModule.js";
-import { HashBinding } from "./hashBinding.js";
-import { YouTubeAPI }  from "./youtubeAPI.js";
+import { PageFactory } from "./src/pageFactory.js";
 
 //default import
 import ColorThemeToggleComponent from "./components/colorThemeToggleComponent.js";
@@ -15,9 +10,6 @@ import LanguageSelectorComponent from "./components/languageSelectorComponent.js
 import OwapoteNewsComponent      from "./components/owapoteNewsComponents.jsx";
 import HeaderNavComponent        from "./components/headerNavComponent.jsx";
 import TopPageSlideShowComponent from "./components/topPageSlideShowComponent.jsx";
-
-const binder = new HashBinding();
-const youtubeAPI = new YouTubeAPI();
 
 const PlaylistIds  = Object.freeze({
     YukariGeoGuessrShorts : "PLYKfT5xUBiECfMwMC2bsAGemA9TAnGzdg",
@@ -28,14 +20,6 @@ const PageName  = Object.freeze({
     [MenuKind.DescriptionPage] : "description",
     [MenuKind.InterestListPage] : "interestList",
     [MenuKind.ContactFormPage] : "contactForm",
-});
-
-//Factory Patternを組む
-const PageFactory = Object.freeze({
-    [MenuKind.TopPage]: () => new TopPage(),
-    [MenuKind.DescriptionPage]: () => new DescriptionPage(),
-    [MenuKind.InterestListPage]: () => new InterestListPage(),
-    [MenuKind.ContactFormPage]: () => new ContactFormPage(),
 });
 
 //マッピングをしておく

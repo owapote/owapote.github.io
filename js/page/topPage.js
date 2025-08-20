@@ -1,4 +1,3 @@
-import { SelectableLanguage } from "../websiteModule.js";
 import { MainTemplate } from "./../interface/mainTemplate.js";
 
 export const TopPageReloadSetting = Object.freeze({
