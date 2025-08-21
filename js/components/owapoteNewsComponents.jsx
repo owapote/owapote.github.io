@@ -9,7 +9,7 @@ function OwapoteNewsComponent(){
     const [activeNews , SetActiveNews]  = React.useState(null);   //今開いているニュース
     const [isClosing  , SetIsClosing]   = React.useState(false);
 
-    const language   = localStorage.getItem("userLanguage")   || "jp";        
+    const language   = localStorage.getItem("userLanguage")   || "jp";
     const colorTheme = localStorage.getItem("userColorTheme") || "lightMode";
 
     //初期設定

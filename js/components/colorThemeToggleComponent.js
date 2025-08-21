@@ -36,7 +36,7 @@ function ColorThemeToggleComponent(){
         const button = document.getElementById("colorThemeToggleButton");
         const colorTheme = localStorage.getItem("userColorTheme") || "lightMode";
 
-        if (colorTheme == "nightMode") {
+        if (colorTheme === "nightMode") {
             button?.classList.remove("is-night");
             document.body.classList.remove("darkMode");
             SetUserColorThemeAndReload("lightMode");
