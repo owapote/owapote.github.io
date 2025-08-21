@@ -1,6 +1,8 @@
 @charset "UTF-8";
 
-@import url(http://fonts.googleapis.com/earlyaccess/notosansjp.css);
+/*Mixed Contentになるため、変更*/
+/*@import url(http://fonts.googleapis.com/earlyaccess/notosansjp.css);*/
+@import url(https://fonts.googleapis.com/css2?family=Noto+Sans+JP);
 @import url("./header.css");
 @import url("./footer.css");
 @import url("./twitter.css");

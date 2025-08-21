@@ -51,10 +51,20 @@ jobs:
                     --minify \
                     --outfile=publish/js/header.js
 
+            - name: Verify bundled header.js
+              run: |
+                #[DEBUG].jsxがまだあればビルド失敗
+                if grep -nE 'from +["'\''"].+/components/.+\.jsx["'\''"]' publish/js/header.js; then
+                    echo "ERROR:.jsx importがpublish/js/header.js内に残っています"; exit 1;
+                fi
+                #[DEBUG]サイズや先頭行を確認
+                wc -c publish/js/header.js
+                head -n 3 publish/js/header.js
+
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
               with:
-                  path: publish  #ビルドされたファイルを出力
+                path: publish  #ビルドされたファイルを出力
 
     deploy:
         needs: build
