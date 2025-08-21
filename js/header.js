@@ -1,4 +1,4 @@
-import {binder, youtubeAPI} from "./src/singleInstanceService.js";
+import { binder, youtubeAPI } from "./src/singleInstanceService.js";
 import { TopPageReloadSetting } from "./page/topPage.js";
 import { SelectableLanguage }   from "./websiteModule.js";
 import { MenuKind }    from "./websiteModule.js";

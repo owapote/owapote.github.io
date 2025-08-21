@@ -17,9 +17,6 @@ concurrency:
 jobs:
     build:
         runs-on: ubuntu-latest
-        defaults:
-            run:
-                working-directory: vite-web  #vite-web内でビルド
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -27,23 +24,37 @@ jobs:
             - name: Setup Node
               uses: actions/setup-node@v4
               with:
-                node-version: 20
-                cache: 'npm'
-                cache-dependency-path: vite-web/package-lock.json
+                  node-version: 20
+                  cache: 'npm'
+                  cache-dependency-path: package-lock.json   #ルートのlockを使用
 
             - name: Install dependencies
-              run: npm ci  # package-lock.jsonに合わせる
+              run: npm ci  #react/react-domはpackage.jsonにある想定
 
-            - name: Build
-              run: npm run build
+            - name: Build header.js with esbuild
+              run: |
+                  #公開物の作業ディレクトリを用意
+                  rm -rf publish
+                  mkdir -p publish/js
 
-            # - name: SPA 404 fallback (optional)
-            #   run: cp dist/index.html dist/404.html || true
+                  #静的ファイルをすべてpublishへコピーする
+                  cp -a index.html css html image js json publish/ 2>/dev/null || true
+
+                  #esbuildでheader.jsをバンドル
+                  npx esbuild js/header.js \
+                    --bundle \
+                    --platform=browser \
+                    --format=esm \
+                    --jsx=automatic \
+                    --jsx-import-source=react \
+                    --loader:.jsx=jsx \
+                    --minify \
+                    --outfile=publish/js/header.js
 
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
               with:
-                path: vite-web/dist  # ビルド成果物を出力
+                  path: publish  #ビルドされたファイルを出力
 
     deploy:
         needs: build
