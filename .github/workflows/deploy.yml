@@ -33,24 +33,23 @@ jobs:
 
             - name: Build header.js with esbuild
               run: |
-                  #作業用ディレクトリを作成
-                  rm -rf publish
-                  mkdir -p publish/js
+                #作業用ディレクトリを作成
+                rm -rf publish
+                mkdir -p publish/js
 
-                  #静的ファイルをすべてpublishへコピーする
-                  cp -a index.html css html image js json publish/ 2>/dev/null || true
+                #静的ファイルをすべてpublishへコピーする
+                cp -a index.html css html image js json publish/ 2>/dev/null || true
 
-                  #esbuildでheader.jsをバンドル(置き換わり確認用ログ出力も添えて)
-                  npx esbuild js/header.js \
-                    --bundle \
-                    --platform=browser \
-                    --format=esm \
-                    --jsx=automatic \
-                    --jsx-import-source=react \
-                    --loader:.jsx=jsx \
-                    --minify \
-                    --banner:js="console.log('[GPT]bundled header.js @ $GITHUB_SHA');" \
-                    --outfile=publish/js/header.js
+                #esbuildでheader.jsをバンドル、上書き
+                npx esbuild js/header.js \
+                --bundle \
+                --platform=browser \
+                --format=esm \
+                --jsx=automatic \
+                --jsx-import-source=react \
+                --loader:.jsx=jsx \
+                --minify \
+                --outfile=publish/js/header.js
 
             - name: Verify & purge .jsx from publish
               run: |
@@ -61,11 +60,11 @@ jobs:
 
             - name: Verify bundled header.js
               run: |
-                #[DEBUG].jsx importがあればビルド失敗扱いにする
+                #.jsx importがあればビルド失敗扱いにする
                 if grep -nE 'from +["'\''"].+/components/.+\.jsx["'\''"]' publish/js/header.js; then
-                    echo "[GPT]ERROR:.jsx importがpublish/js/header.js内に残っています"; exit 1;
+                    echo "ERROR:.jsx importがpublish/js/header.js内に残っています"; exit 1;
                 fi
-                #[DEBUG]上書きされたか確認
+                #上書きされたか確認
                 wc -c publish/js/header.js
                 head -n 3 publish/js/header.js
 
