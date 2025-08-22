@@ -52,6 +52,11 @@ body.darkMode body.preload{
     background-color: black;
 }
 
+/*常にモーダルにフォーカスを当てる*/
+body.modal-active{
+    overflow: hidden;
+}
+
 h1{
     font-size: 20px;
     color: chocolate;

@@ -19,6 +19,6 @@ export default {
     },
     root: '.',      //index.htmlの位置
     build: {
-        outDir: 'dist'
+        outDir: 'publish'
     }
 };

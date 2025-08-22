@@ -24,8 +24,10 @@ export class YouTubeAPI{
 
                 //ショート動画の要素を決定
                 let iframe = document.createElement('iframe');
+                iframe.title = "owapote GeoGuessr";
                 iframe.width = "315";
                 iframe.height = "560";
+                iframe.loading = "lazy";
                 iframe.src = `https://www.youtube.com/embed/${videoId}`;
                 iframe.sandbox = "allow-scripts allow-same-origin allow-presentation";
                 iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";

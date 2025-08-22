@@ -1,6 +1,6 @@
 import { SetBaseFunction } from "../interface/componentTemplate.js";
 import React from "react";
-import ReactDOM from "react-dom";
+import { createPortal } from "react-dom";
 
 let _owapoteNewsCache = null;
 
@@ -77,7 +77,7 @@ function OwapoteNewsComponent(){
                     </div>
                 ))}
             </div>
-            {activeNews && ReactDOM.createPortal(
+            {activeNews && createPortal(
                 <div id="modalWrapperSketch" className={isClosing?"out":""}>
                     <div className="modalBackground" onClick={CloseOwapoteNewsModal}>
                         
