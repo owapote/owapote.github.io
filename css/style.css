@@ -48,7 +48,7 @@ body.enableTransition{
     transition: 1s;
 }
 
-body.darkMode body.preload{
+body.nightMode body.preload{
     background-color: black;
 }
 
@@ -67,7 +67,7 @@ h1{
     max-width: 100%;
 }
 
-.darkMode h1{
+.nightMode h1{
     color: white;
 }
 
@@ -97,7 +97,7 @@ main {
     margin: 0px auto;
 }
 
-.darkMode p{
+.nightMode p{
     overflow: hidden;
 }
 

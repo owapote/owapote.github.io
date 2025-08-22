@@ -18,7 +18,7 @@ main p{
     margin-left: 20px;
 }
 
-.darkMode main h1{
+.nightMode main h1{
     background-color: #222;
 }
 
@@ -71,7 +71,7 @@ article{
     transition: background-color 1s;
 }
 
-.darkMode article{
+.nightMode article{
     background-color: #222;
 }
 
@@ -92,7 +92,7 @@ article h1{
     border-bottom: solid 3px black;
 }
 
-.darkMode article h1{
+.nightMode article h1{
     border-bottom: solid 3px #BBB;
 }
 
@@ -117,7 +117,7 @@ article h1{
     color: black;
 }
 
-.darkMode #owapoteNews button{
+.nightMode #owapoteNews button{
     color:white;
 }
 
@@ -133,7 +133,7 @@ article h1{
     border-top: solid 1px chocolate;
 }
 
-.darkMode .owapoteNewsContent + .owapoteNewsContent{
+.nightMode .owapoteNewsContent + .owapoteNewsContent{
     border-top: solid 1px #BBB;
 }
 
@@ -145,7 +145,7 @@ article h1{
     transition: 1s;
 }
 
-.darkMode .owapoteNewsContent{
+.nightMode .owapoteNewsContent{
     background-color: #222;
 }
 
@@ -159,7 +159,7 @@ article h1{
     transition: background-color 1.0s;
 }
 
-.darkMode .owapoteNewsContentBackGround{
+.nightMode .owapoteNewsContentBackGround{
     background-color: #333;
 }
 

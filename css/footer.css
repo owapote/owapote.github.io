@@ -15,7 +15,7 @@ footer p{
     padding-right: 10px;
 }
 
-.darkMode footer{
+.nightMode footer{
     background-color: #222;
     color: #ddd;
 }

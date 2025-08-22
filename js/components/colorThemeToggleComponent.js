@@ -1,5 +1,6 @@
 import { SetBaseFunction } from "../interface/componentTemplate.js";
 import { TopPageReloadSetting } from "./../page/topPage.js";
+import { ColorTheme } from "../websiteModule.js";
 import React from "react";
 
 function ColorThemeToggleComponent(){
@@ -7,10 +8,10 @@ function ColorThemeToggleComponent(){
     React.useEffect(() => {
         const button = document.querySelector("#colorThemeToggleButton");
         const colorTheme = localStorage.getItem("userColorTheme") || "lightMode";
-        if (colorTheme === "nightMode") {
+        if (colorTheme === ColorTheme.DarkMode) {
             button?.classList.add("is-night");
-            document.body.classList.add("darkMode");
-            SetUserColorThemeAndReload("nightMode");
+            document.body.classList.add(ColorTheme.DarkMode);
+            SetUserColorThemeAndReload(ColorTheme.DarkMode);
         }
 
         //ページが読み込まれた瞬間はカラーテーマのtransitionをさせないようにしている
@@ -36,14 +37,14 @@ function ColorThemeToggleComponent(){
         const button = document.getElementById("colorThemeToggleButton");
         const colorTheme = localStorage.getItem("userColorTheme") || "lightMode";
 
-        if (colorTheme === "nightMode") {
+        if (colorTheme === ColorTheme.DarkMode) {
             button?.classList.remove("is-night");
-            document.body.classList.remove("darkMode");
-            SetUserColorThemeAndReload("lightMode");
+            document.body.classList.remove(ColorTheme.DarkMode);
+            SetUserColorThemeAndReload(ColorTheme.LightMode);
         } else {
             button?.classList.add("is-night");
-            document.body.classList.add("darkMode");
-            SetUserColorThemeAndReload("nightMode");
+            document.body.classList.add(ColorTheme.DarkMode);
+            SetUserColorThemeAndReload(ColorTheme.DarkMode);
         }
     };
 

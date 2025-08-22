@@ -20,6 +20,6 @@ main p{
     margin-left: 20px;
 }
 
-.darkMode main h1{
+.nightMode main h1{
     background-color: #222;
 }

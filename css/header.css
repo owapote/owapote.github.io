@@ -1,7 +1,7 @@
 /*---------------*/
 /*ダークモード設定*/
 /*---------------*/
-.darkMode header h1{
+.nightMode header h1{
     color: white;
 }
 
@@ -60,12 +60,12 @@ header h1{
     cursor: pointer;
 }
 
-.darkMode{
+.nightMode{
     background-color: black;
     color: silver;
 }
 
-.darkMode header{
+.nightMode header{
     background-color: #222;
     color: #ddd;
 }
@@ -107,7 +107,7 @@ header h1{
     transition: border 0.8s;
 }
 
-.darkMode #languageSelector select{
+.nightMode #languageSelector select{
     border: 2px double white;
     background-image: url(./../image/icon/dropDownArrow_night.svg);
 }
@@ -189,7 +189,7 @@ div #headerPageJumpButtons{
     border-left: solid 5px #ccc;
 }
 
-.darkMode #headerPageJumpButtons button{
+.nightMode #headerPageJumpButtons button{
     background-color: powderblue;
 }
 
@@ -198,7 +198,7 @@ div #headerPageJumpButtons{
     background-color:peachpuff;
 }
 
-.darkMode #headerPageJumpButtons button:hover{
+.nightMode #headerPageJumpButtons button:hover{
     font-weight: bold;
     background-color: lightskyblue;
 }

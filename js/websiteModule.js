@@ -4,6 +4,11 @@ export const SelectableLanguage = Object.freeze({
     TokiPona: "tok",
 });
 
+export const ColorTheme = Object.freeze({
+    LightMode: "lightMode",
+    DarkMode: "nightMode",
+});
+
 export const MenuKind = Object.freeze({
     TopPage: 0,
     DescriptionPage: 1,
