@@ -1,6 +1,6 @@
 import { GetLocalStorage, SetLocalStorage } from "@util/localStorageWrapper";
 import { SetBaseFunction } from "../interface/componentTemplate";
-import React from "react";
+import React, { JSX } from "react";
 import { createPortal } from "react-dom";
 import { SelectableLanguageValues } from "ts/src/websiteModule";
 import type { ColorTheme, SelectableLanguage } from "ts/src/websiteModule";
@@ -11,7 +11,7 @@ const OWAPOTE_NEWS_URL = "./../json/owapoteNews.json";
 
 let _owapoteNewsCache: OwapoteNewsData | null = null;
 
-function OwapoteNewsComponent(){
+function OwapoteNewsComponent(): JSX.Element{
     const [owapoteNews, setOwapoteNews] = React.useState<OwapoteNewsData | null>(null);
     const [activeNews , setActiveNews]  = React.useState<OwapoteNewsItem | null>(null);   //今開いているニュース
     const [isClosing  , setIsClosing]   = React.useState(false);

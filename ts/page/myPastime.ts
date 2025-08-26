@@ -5,7 +5,7 @@ import type { SelectableLanguage } from "ts/src/websiteModule";
 type MyPastimeTranslationsJson = { myPastimeTranslations: TranslationItem[] };
 
 export class MyPastimePage extends MainTemplate{
-    ChangeContentsLanguage(){
+    ChangeContentsLanguage(): void{
         const TranslateByPage = (json: MyPastimeTranslationsJson, language: SelectableLanguage) => {
             super.ApplyTranslationsById(json.myPastimeTranslations, language);
         }

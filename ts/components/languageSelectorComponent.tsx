@@ -1,10 +1,10 @@
 import { TopPageReloadSetting } from "../page/topPage";
 import { MenuKind, MenuKindValues, SelectableLanguage, SelectableLanguageValues } from "../src/websiteModule";
 import { SetBaseFunction } from "../interface/componentTemplate";
-import React from "react";
+import React, {JSX} from "react";
 import { GetLocalStorage, SetLocalStorage } from "@util/localStorageWrapper";
 
-function LanguageSelectorComponent(){
+function LanguageSelectorComponent(): JSX.Element{
     const language = GetLocalStorage("userLanguage", SelectableLanguageValues.Japanese) ||"jp";
 
     //初期設定

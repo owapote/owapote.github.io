@@ -13,7 +13,7 @@ export const TopPageReloadSetting = {
 type TopPageTranslationsJson = { topPageTranslations: TranslationItem[] };
 
 export class TopPage extends MainTemplate{
-    ChangeContentsLanguage(){
+    ChangeContentsLanguage(): void{
         const TranslateByPage = (json: TopPageTranslationsJson, language: SelectableLanguage) => {
             super.ApplyTranslationsById(json.topPageTranslations, language);
         }

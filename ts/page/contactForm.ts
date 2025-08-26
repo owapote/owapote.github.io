@@ -5,7 +5,7 @@ import type { SelectableLanguage } from "ts/src/websiteModule";
 type ContactFormTranslationsJson = { contactFormTranslations: TranslationItem[] };
 
 export class ContactFormPage extends MainTemplate{
-    ChangeContentsLanguage(){
+    ChangeContentsLanguage(): void{
         const TranslateByPage = (json: ContactFormTranslationsJson, language: SelectableLanguage) => {
             super.ApplyTranslationsById(json.contactFormTranslations, language);
         }

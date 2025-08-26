@@ -4,7 +4,7 @@ import { TopPageReloadSetting } from "../page/topPage";
 import { ColorTheme, ColorThemeValues, MenuKind, MenuKindValues } from "../src/websiteModule";
 import React from "react";
 
-function ColorThemeToggleComponent(){
+function ColorThemeToggleComponent(): null{
     //初期設定 mounted
     React.useEffect(() => {
         const button = document.querySelector("#colorThemeToggleButton");

@@ -2,7 +2,7 @@ import type { MenuKind, SelectableLanguage, } from "../src/websiteModule";
 import { SelectableLanguageValues } from "../src/websiteModule";
 import { TopPageReloadSetting } from "../page/topPage";
 import { SetBaseFunction } from "../interface/componentTemplate";
-import React from "react";
+import React, { JSX } from "react";
 import { GetLocalStorage } from "@util/localStorageWrapper";
 import type { HeaderNavData, HeaderNavItem } from "@contracts/headerNavContracts";
 import { FetchJson } from "@util/jsonLoader";
@@ -11,7 +11,7 @@ const HEADER_NAV_URL = "./../json/header.json";
 
 let _headerNavCache: HeaderNavData | null = null;
 
-function HeaderNavComponent() {
+function HeaderNavComponent(): JSX.Element {
     const [headerNavData, setHeaderNavData] = React.useState<HeaderNavData | null>(null);
 
     const language : SelectableLanguage = GetLocalStorage("userLanguage", SelectableLanguageValues.Japanese);        

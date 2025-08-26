@@ -12,9 +12,10 @@ export type LoadFunction = () => void | Promise<void>;
  * @param loadFunction Loadとして使う関数(必要なければ空のラムダ式にする)
  * @returns 
  */
-export function SetBaseFunction<T>(component: React.ComponentType<T>,
-                                   loadFunction : LoadFunction = BaseLoadMustOverride
-                                  ) : React.ComponentType<T> & { Load: LoadFunction } {
+export function SetBaseFunction<T>(
+    component: React.ComponentType<T>,
+    loadFunction : LoadFunction = BaseLoadMustOverride
+) : React.ComponentType<T> & { Load: LoadFunction } {
     const ret = component as React.ComponentType<T> & { Load: LoadFunction};
     ret.Load = loadFunction;
     return ret;

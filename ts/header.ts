@@ -57,7 +57,7 @@ window.ReloadTopPageContents = ReloadTopPageContents;
 window.getPagePath = getPagePath;
 
 //ヘッダーの初期化
-function InitHeaderEvent(){
+function InitHeaderEvent(): void{
     const language = GetLocalStorage("userLanguage",SelectableLanguageValues.Japanese);
     document.documentElement.lang = language;
 
@@ -77,7 +77,7 @@ function InitHeaderEvent(){
  * @param {*} menuNum MenuKind、もしくはその範囲内の整数
  * @param {*} topPageReloadSetting ビット管理している
  */
-function AddToChangeContentWithButton(menuNum: MenuKind, topPageReloadSetting: number){
+function AddToChangeContentWithButton(menuNum: MenuKind, topPageReloadSetting: number): void{
     const targetHTML = document.getElementById("mainTemplate");
     const targetCSS  = document.getElementById("loadCSSForContent") as HTMLLinkElement | null;
 
@@ -120,7 +120,7 @@ function AddToChangeContentWithButton(menuNum: MenuKind, topPageReloadSetting: n
  * TopPage内のコンテンツを再読み込みする
  * @param {*} topPageReloadSetting ビット管理している
  */
-function ReloadTopPageContents(topPageReloadSetting: number){
+function ReloadTopPageContents(topPageReloadSetting: number): void{
     for(const item of TopPageContentsReloaders){
         if(topPageReloadSetting & item.flag){
             item.reloadFunc();
@@ -135,7 +135,7 @@ function ReloadTopPageContents(topPageReloadSetting: number){
  * @param {*} fileExtension 拡張子
  * @returns 相対パス
  */
-function getPagePath(menuNum: MenuKind, usePath: string, fileExtension: string){
+function getPagePath(menuNum: MenuKind, usePath: string, fileExtension: string): string{
     var retPath = usePath;
 
     //memo:falsyでないことが大前提

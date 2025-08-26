@@ -13,6 +13,7 @@ type YouTubePlaylistItemsResponse = {
 
 export class YouTubeAPI{
     private iframeCaches: Map<string, HTMLIFrameElement[]>;
+    
     constructor() {
         this.iframeCaches = new Map<string, HTMLIFrameElement[]>();
     }

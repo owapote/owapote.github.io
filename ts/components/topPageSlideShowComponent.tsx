@@ -1,6 +1,7 @@
+import { JSX } from "react";
 import { SetBaseFunction } from "../interface/componentTemplate";
 
-function TopPageSlideShowComponent(){
+function TopPageSlideShowComponent(): JSX.Element{
     
     return (
         <ul>
