@@ -1,26 +1,27 @@
-import { binder, youtubeAPI } from "./src/singleInstanceService.js";
-import { TopPageReloadSetting } from "./page/topPage.js";
-import { SelectableLanguage }   from "./websiteModule.js";
-import { MenuKind }    from "./websiteModule.js";
-import { PageFactory } from "./src/pageFactory.js";
+import { binder, youtubeAPI } from "./src/singleInstanceService";
+import { TopPageReloadSetting } from "./page/topPage";
+import type { MenuKind }   from "./src/websiteModule";
+import { SelectableLanguageValues, MenuKindValues }   from "./src/websiteModule";
+import { PageFactory } from "./src/pageFactory";
 
 //default import
-import ColorThemeToggleComponent from "./components/colorThemeToggleComponent.js";
-import LanguageSelectorComponent from "./components/languageSelectorComponent.jsx";
-import OwapoteNewsComponent      from "./components/owapoteNewsComponents.jsx";
-import HeaderNavComponent        from "./components/headerNavComponent.jsx";
-import TopPageSlideShowComponent from "./components/topPageSlideShowComponent.jsx";
+import ColorThemeToggleComponent from "./components/colorThemeToggleComponent";
+import LanguageSelectorComponent from "./components/languageSelectorComponent";
+import OwapoteNewsComponent      from "./components/owapoteNewsComponents";
+import HeaderNavComponent        from "./components/headerNavComponent";
+import TopPageSlideShowComponent from "./components/topPageSlideShowComponent";
+import { GetLocalStorage, SetLocalStorage } from "@util/localStorageWrapper";
 
-const PlaylistIds  = Object.freeze({
+const PlaylistIds = {
     YukariGeoGuessrShorts : "PLYKfT5xUBiECfMwMC2bsAGemA9TAnGzdg",
-});
+}as const;
 
-const PageName  = Object.freeze({
-    [MenuKind.TopPage] : "topPage",
-    [MenuKind.DescriptionPage] : "description",
-    [MenuKind.InterestListPage] : "interestList",
-    [MenuKind.ContactFormPage] : "contactForm",
-});
+const PageName = {
+    [MenuKindValues.TopPage] : "topPage",
+    [MenuKindValues.DescriptionPage] : "description",
+    [MenuKindValues.MyPastimePage] : "myPastime",
+    [MenuKindValues.ContactFormPage] : "contactForm",
+}as const;
 
 //マッピングをしておく
 const TopPageContentsReloaders = [
@@ -40,14 +41,24 @@ const TopPageContentsReloaders = [
 ];
 
 //type=module対策
+declare global{
+    interface Window{
+        InitHeaderEvent: () => void;
+        AddToChangeContentWithButton:(menuNum: MenuKind, topPageReloadSetting: number) => void;
+        getPagePath:(menuNum: MenuKind, usePath: string, fileExtension: string) => string;
+        ReloadTopPageContents:(topPageReloadSetting: number) => void;
+    }
+};
+
+//type=module対策
 window.InitHeaderEvent = InitHeaderEvent;
 window.AddToChangeContentWithButton = AddToChangeContentWithButton;
-window.getPagePath = getPagePath;
 window.ReloadTopPageContents = ReloadTopPageContents;
+window.getPagePath = getPagePath;
 
 //ヘッダーの初期化
 function InitHeaderEvent(){
-    const language = localStorage.getItem("userLanguage") || SelectableLanguage.Japanese
+    const language = GetLocalStorage("userLanguage",SelectableLanguageValues.Japanese);
     document.documentElement.lang = language;
 
     //Vue.jsでbinding
@@ -55,8 +66,9 @@ function InitHeaderEvent(){
     binder.ShowComponent(LanguageSelectorComponent, "#languageSelector");
 
     //TopPageReloadSettingのフラグを全て立てる
-    const allFlags = Object.values(TopPageReloadSetting).reduce((acc, val) => acc | val, 0);
-    AddToChangeContentWithButton(MenuKind.TopPage, allFlags);
+    //数値配列とみなす
+    const allFlags = (Object.values(TopPageReloadSetting) as number[]).reduce((acc, val) => acc | val, 0);
+    AddToChangeContentWithButton(MenuKindValues.TopPage, allFlags);
     youtubeAPI.GetYouTubePlayListVideo(PlaylistIds.YukariGeoGuessrShorts, 3);
 }
 
@@ -65,33 +77,33 @@ function InitHeaderEvent(){
  * @param {*} menuNum MenuKind、もしくはその範囲内の整数
  * @param {*} topPageReloadSetting ビット管理している
  */
-function AddToChangeContentWithButton(menuNum, topPageReloadSetting){
+function AddToChangeContentWithButton(menuNum: MenuKind, topPageReloadSetting: number){
     const targetHTML = document.getElementById("mainTemplate");
-    const targetCSS = document.getElementById("loadCSSForContent");
+    const targetCSS  = document.getElementById("loadCSSForContent") as HTMLLinkElement | null;
 
-    const usePathHTML = "./html/page/";
-    const usePathCSS = "./css/page/";
+    if(!targetHTML || !targetCSS) return;
+
+    const usePathHTML   = "./html/page/";
+    const usePathCSS    = "./css/page/";
     const extensionHTML = ".html";
-    const extensionCSS = ".css";
+    const extensionCSS  = ".css";
     //各ページのHTMLとCSSの相対パスを取得
     const pagePathHTML = getPagePath(menuNum, usePathHTML, extensionHTML);
     const pagePathCSS  = getPagePath(menuNum, usePathCSS , extensionCSS);
 
-    const pageClass = (PageFactory[menuNum] || PageFactory[MenuKind.TopPage])();
+    const pageClass = (PageFactory[menuNum] || PageFactory[MenuKindValues.TopPage])();
     
     fetch(pagePathHTML)
         .then(response =>{
-            if(!response.ok) throw new Error("HTMLの読み込みに失敗しました:",targetHTML);
+            if(!response.ok) throw new Error(`HTMLの読み込みに失敗しました:${targetHTML}`);
             return response.text();
         })
         .then(html=>{
-            //if(menuNum == localStorage.getItem("nowContent")){
-                targetHTML.innerHTML = html;
+            targetHTML.innerHTML = html;
             pageClass.ChangeContentsLanguage();
-            //}
 
             //HACK:トップページ限定の操作
-            if(menuNum == MenuKind.TopPage){
+            if(menuNum == MenuKindValues.TopPage){
                 ReloadTopPageContents(topPageReloadSetting);
             }
         })
@@ -101,14 +113,14 @@ function AddToChangeContentWithButton(menuNum, topPageReloadSetting){
     //CSSの適用シートを変更
     targetCSS.href = pagePathCSS;
     
-    localStorage.setItem("nowContent", menuNum);
+    SetLocalStorage("nowContent", menuNum.toString());
 }
 
 /**
  * TopPage内のコンテンツを再読み込みする
  * @param {*} topPageReloadSetting ビット管理している
  */
-function ReloadTopPageContents(topPageReloadSetting){
+function ReloadTopPageContents(topPageReloadSetting: number){
     for(const item of TopPageContentsReloaders){
         if(topPageReloadSetting & item.flag){
             item.reloadFunc();
@@ -123,7 +135,7 @@ function ReloadTopPageContents(topPageReloadSetting){
  * @param {*} fileExtension 拡張子
  * @returns 相対パス
  */
-function getPagePath(menuNum, usePath, fileExtension){
+function getPagePath(menuNum: MenuKind, usePath: string, fileExtension: string){
     var retPath = usePath;
 
     //memo:falsyでないことが大前提

@@ -1,4 +1,4 @@
-import { SetBaseFunction } from "../interface/componentTemplate.js";
+import { SetBaseFunction } from "../interface/componentTemplate";
 
 function TopPageSlideShowComponent(){
     

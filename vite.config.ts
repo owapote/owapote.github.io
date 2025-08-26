@@ -1,8 +1,13 @@
-// vite.config.js
+// vite.config.ts
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import tsconfigPaths from 'vite-tsconfig-paths';    //alias
 
-export default {
-    plugins: [react()],
+export default defineConfig({
+    plugins: [
+        react(),
+        tsconfigPaths(),    //@/の解決
+    ],
     base: '/', //user repo
     server: {
         host: "127.0.0.1",
@@ -21,4 +26,4 @@ export default {
     build: {
         outDir: 'publish'
     }
-};
+});

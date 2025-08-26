@@ -1,5 +1,5 @@
 {
-    "owapoteNews":[
+    "owapoteNewsItem":[
         {
             "imagePath":{
                 "lightMode": "./../image/icon/blogIcon_light.svg",
@@ -10,7 +10,7 @@
                 "en": "Making website is fun!",
                 "tok": "pali lipu li pona!"
             },
-            "description":{
+            "translations":{
                 "jp": "みんなもやろうね",
                 "en": "Shall we?",
                 "tok": "pona musi"
@@ -26,7 +26,7 @@
                 "en": "Making a vocaloid music now...",
                 "tok": "pona musi"
             },
-            "description":{
+            "translations":{
                 "jp": "近日公開予定...",
                 "en": "Hobby list",
                 "tok": "pona musi"
@@ -42,7 +42,7 @@
                     "en": "Hobby list",
                     "tok": "pona musi"
             },
-            "description":{
+            "translations":{
                     "jp": "YouTubeにて絶賛公開中！",
                     "en": "Hobby list",
                     "tok": "pona musi"
@@ -58,7 +58,7 @@
                 "en": "Freeeeee",
                 "tok": "pona musi"
             },
-            "description":{
+            "translations":{
                 "jp": "プログラミングしかしていない...",
                 "en": "Hobby list",
                 "tok": "pona musi"
@@ -74,7 +74,7 @@
                 "en": "Hobby list",
                 "tok": "pona musi"
             },
-            "description":{
+            "translations":{
                 "jp": "詳細はこちらから",
                 "en": "Hobby list",
                 "tok": "pona musi"

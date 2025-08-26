@@ -1,27 +1,40 @@
 {
-    "headerText": {
-        "jp": "owapoteのお部屋",
-        "en": "Owapote's room",
-        "tok": "Owapote tomo"
-    },
-    "topPageNav": {
-        "jp": "トップページ",
-        "en": "Top page",
-        "tok": "open lipu"
-    },
-    "descriptionNav": {
-        "jp": "概要",
-        "en": "About me",
-        "tok": "sina li seme?"
-    },
-    "interestListNav": {
-        "jp": "趣味一覧",
-        "en": "Hobby list",
-        "tok": "pona musi"
-    },
-    "contactFormNav": {
-        "jp": "お問い合わせ",
-        "en": "Contact me",
-        "tok": "kute ale ijo"
-    }
+    "headerNavItems": [
+        {
+            "menuKind": 0,
+            "translations":
+            {
+                "jp": "トップページ",
+                "en": "Top page",
+                "tok": "open lipu"
+            }
+        },
+        {
+            "menuKind": 1,
+            "translations":
+            {
+                "jp": "概要",
+                "en": "About me",
+                "tok": "sina li seme?"
+            }
+        },
+        {
+            "menuKind": 2,
+            "translations":
+            {
+                "jp": "趣味一覧",
+                "en": "Hobby list",
+                "tok": "pona musi"
+            }
+        },
+        {
+            "menuKind": 3,
+            "translations":
+            {
+                "jp": "お問い合わせ",
+                "en": "Contact me",
+                "tok": "kute ale ijo"
+            }
+        }
+    ]
 }

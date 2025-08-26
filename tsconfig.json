@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "target": "ES2022",
+        "module": "ESNext",
+        "moduleResolution": "Bundler",
+        "jsx": "react-jsx",
+        "skipLibCheck": true,
+        "isolatedModules": true,
+        "forceConsistentCasingInFileNames": true,
+        "baseUrl": ".",
+        "paths": 
+        { 
+            "@util/*": ["ts/util/*"],
+            "@contracts/*": ["ts/contracts/*"]
+        },
+        "types": ["vite/client"]
+    },
+    "include": ["src", "html", "ts"],
+    "exclude": ["publish", "node_modules"]
+}

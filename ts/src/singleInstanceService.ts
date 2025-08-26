@@ -1,5 +1,5 @@
-import { HashBinding } from "../services/hashBinding.js";
-import { YouTubeAPI }  from "../services/youtubeAPI.js";
+import { HashBinding } from "../services/hashBinding";
+import { YouTubeAPI }  from "../services/youtubeAPI";
 
 //HACK:構造ごとシングルトンにしても良いかもしれない
 export const binder = new HashBinding();

@@ -1,22 +1,36 @@
 {
-    "welcomeText": {
-        "jp": "owapoteのお部屋へようこそ！",
-        "en": "Welcome to Owapote's room!",
-        "tok": "kama pona e Owapote tomo!"
-    },
-    "youtubeShortsGeoguessrText": {
-        "jp": "最新Shorts動画",
-        "en": "Most newest YouTube Shorts Movie",
-        "tok": "kama pona e Owapote tomo!"
-    },
-    "yukariGeoGuessrText": {
-        "jp": "10秒で国を当てるゆかり(雫)シリーズ",
-        "en": "Yukari(Shizuku) GeoGuessr Series",
-        "tok": "jan Yukari GeoGuessr Series"
-    },
-    "owapoteNewsText":{
-        "jp": "最近のできごと",
-        "en": "Most recent topics",
-        "tok": "pali pi tenpo pini sin"
-    }
+    "topPageTranslations":[
+        {
+            "id": "welcomeText",
+            "translations": {
+                "jp": "owapoteのお部屋へようこそ！",
+                "en": "Welcome to Owapote's room!",
+                "tok": "kama pona e Owapote tomo!"
+            }
+        },
+        {
+            "id": "youtubeShortsGeoguessrText",
+            "translations": {
+                "jp": "最新Shorts動画",
+                "en": "Most newest YouTube Shorts Movie",
+                "tok": "kama pona e Owapote tomo!"
+            }
+        },
+        {
+            "id": "yukariGeoGuessrText",
+            "translations": {
+                "jp": "10秒で国を当てるゆかり(雫)シリーズ",
+                "en": "Yukari(Shizuku) GeoGuessr Series",
+                "tok": "jan Yukari GeoGuessr Series"
+            }
+        },
+        {
+            "id": "owapoteNewsText",
+            "translations":{
+                "jp": "最近のできごと",
+                "en": "Most recent topics",
+                "tok": "pali pi tenpo pini sin"
+            }
+        }
+    ]
 }

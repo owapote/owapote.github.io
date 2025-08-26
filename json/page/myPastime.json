@@ -1,0 +1,12 @@
+{
+    "myPastimeTranslations":[
+        {
+            "id": "myPastimeText",
+            "translations": {
+                "jp": "趣味一覧",
+                "en": "Hobby list",
+                "tok": "pona musi"
+            }
+        }
+    ]
+}

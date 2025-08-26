@@ -1,7 +1,12 @@
 {
-    "aboutOwapoteText": {
-        "jp": "owapoteについて",
-        "en": "About Owapote",
-        "tok": "Owapote li seme?"
-    }
+    "descriptionTranslations":[
+        {
+            "id": "aboutOwapoteText",
+            "translations": {
+                "jp": "owapoteについて",
+                "en": "About Owapote",
+                "tok": "Owapote li seme?"
+            }
+        }
+    ]
 }
