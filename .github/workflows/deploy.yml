@@ -40,29 +40,30 @@ jobs:
                 #静的ファイルをすべてpublishへコピーする
                 cp -a index.html css html image js json publish/ 2>/dev/null || true
 
-                #esbuildでheader.jsをバンドル、上書き
-                npx esbuild js/header.js \
+                #esbuildでheader.tsをバンドル、上書き
+                npx esbuild ts/header.ts \
                 --bundle \
                 --platform=browser \
                 --format=esm \
                 --jsx=automatic \
                 --jsx-import-source=react \
-                --loader:.jsx=jsx \
+                --loader:.ts=ts \
+                --loader:.tsx=tsx \
                 --minify \
                 --outfile=publish/js/header.js
 
-            - name: Verify & purge .jsx from publish
+            - name: Verify & purge .tsx from publish
               run: |
-                #publishフォルダ内の.jsxを可視化
-                find publish -type f -name "*.jsx" -print || true
+                #publishフォルダ内の.tsxを可視化
+                find publish -type f -name "*.tsx" -print || true
                 #読み込み防止のため強制削除
-                find publish -type f -name "*.jsx" -delete || true
+                find publish -type f -name "*.tsx" -delete || true
 
             - name: Verify bundled header.js
               run: |
-                #.jsx importがあればビルド失敗扱いにする
-                if grep -nE 'from +["'\''"].+/components/.+\.jsx["'\''"]' publish/js/header.js; then
-                    echo "ERROR:.jsx importがpublish/js/header.js内に残っています"; exit 1;
+                #.tsx importがあればビルド失敗扱いにする
+                if grep -nE 'from +["'\''"].+/components/.+\.tsx["'\''"]' publish/js/header.js; then
+                    echo "ERROR:.tsx importがpublish/js/header.js内に残っています"; exit 1;
                 fi
                 #上書きされたか確認
                 wc -c publish/js/header.js

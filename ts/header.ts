@@ -136,7 +136,7 @@ function ReloadTopPageContents(topPageReloadSetting: number): void{
  * @returns 相対パス
  */
 function getPagePath(menuNum: MenuKind, usePath: string, fileExtension: string): string{
-    var retPath = usePath;
+    let retPath = usePath;
 
     //memo:falsyでないことが大前提
     if(PageName[menuNum]){
