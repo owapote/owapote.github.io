@@ -15,6 +15,7 @@ node_modules/.vite/
 
 #publish
 publish/
+js/
 
 #dust
 .DS_Store
