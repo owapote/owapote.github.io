@@ -13,6 +13,9 @@ node_modules/.vite/
 .env
 .env.*.local
 
+#publish
+publish/
+
 #dust
 .DS_Store
 .vscode/*
