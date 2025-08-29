@@ -1,7 +1,7 @@
 import { binder, youtubeAPI } from "./src/singleInstanceService";
 import { TopPageReloadSetting } from "./page/topPage";
 import type { MenuKind }   from "./src/websiteModule";
-import { SelectableLanguageValues, MenuKindValues }   from "./src/websiteModule";
+import { SelectableLanguageValues, MenuKindValues, SelectableLanguage }   from "./src/websiteModule";
 import { PageFactory } from "./src/pageFactory";
 
 //default import
@@ -10,7 +10,7 @@ import LanguageSelectorComponent from "./components/languageSelectorComponent";
 import OwapoteNewsComponent      from "./components/owapoteNewsComponents";
 import HeaderNavComponent        from "./components/headerNavComponent";
 import TopPageSlideShowComponent from "./components/topPageSlideShowComponent";
-import { GetLocalStorage, SetLocalStorage } from "@util/localStorageWrapper";
+import { GetLocalStorage, SetLocalStorage, UserSaveDataValues } from "@util/localStorageWrapper";
 
 const PlaylistIds = {
     YukariGeoGuessrShorts : "PLYKfT5xUBiECfMwMC2bsAGemA9TAnGzdg",
@@ -38,7 +38,7 @@ const TopPageContentsReloaders = [
         flag: TopPageReloadSetting.ShowYouTubeContents,
         reloadFunc: () => youtubeAPI.AppendIframesToContainer(PlaylistIds.YukariGeoGuessrShorts, "youtubeShortsGeoGuessrContents")
     }
-];
+]as const;
 
 //type=module対策
 declare global{
@@ -56,9 +56,11 @@ window.AddToChangeContentWithButton = AddToChangeContentWithButton;
 window.ReloadTopPageContents = ReloadTopPageContents;
 window.getPagePath = getPagePath;
 
-//ヘッダーの初期化
+/**
+ * ヘッダーの初期化をする
+ */
 function InitHeaderEvent(): void{
-    const language = GetLocalStorage("userLanguage",SelectableLanguageValues.Japanese);
+    const language = GetLocalStorage<SelectableLanguage>(UserSaveDataValues.Language, SelectableLanguageValues.Japanese);
     document.documentElement.lang = language;
 
     //Vue.jsでbinding
@@ -69,12 +71,12 @@ function InitHeaderEvent(): void{
     //数値配列とみなす
     const allFlags = (Object.values(TopPageReloadSetting) as number[]).reduce((acc, val) => acc | val, 0);
     AddToChangeContentWithButton(MenuKindValues.TopPage, allFlags);
-    youtubeAPI.GetYouTubePlayListVideo(PlaylistIds.YukariGeoGuessrShorts, 3);
+    youtubeAPI.GetYouTubePlayListVideo(PlaylistIds.YukariGeoGuessrShorts, 5);
 }
 
 /**
  * ボタンに応じて表示内容を切り替える
- * @param {*} menuNum MenuKind、もしくはその範囲内の整数
+ * @param {*} menuNum 
  * @param {*} topPageReloadSetting ビット管理している
  */
 function AddToChangeContentWithButton(menuNum: MenuKind, topPageReloadSetting: number): void{
@@ -113,7 +115,7 @@ function AddToChangeContentWithButton(menuNum: MenuKind, topPageReloadSetting: n
     //CSSの適用シートを変更
     targetCSS.href = pagePathCSS;
     
-    SetLocalStorage("nowContent", menuNum.toString());
+    SetLocalStorage(UserSaveDataValues.NowContent, menuNum.toString());
 }
 
 /**

@@ -2,10 +2,10 @@ import { TopPageReloadSetting } from "../page/topPage";
 import { MenuKind, MenuKindValues, SelectableLanguage, SelectableLanguageValues } from "../src/websiteModule";
 import { SetBaseFunction } from "../interface/componentTemplate";
 import React, {JSX} from "react";
-import { GetLocalStorage, SetLocalStorage } from "@util/localStorageWrapper";
+import { GetLocalStorage, SetLocalStorage, UserSaveDataValues } from "@util/localStorageWrapper";
 
 function LanguageSelectorComponent(): JSX.Element{
-    const language = GetLocalStorage("userLanguage", SelectableLanguageValues.Japanese) ||"jp";
+    const language = GetLocalStorage<SelectableLanguage>(UserSaveDataValues.Language, SelectableLanguageValues.Japanese);
 
     //初期設定
     React.useEffect(()=>{
@@ -29,9 +29,9 @@ function LanguageSelectorComponent(): JSX.Element{
 
     //設定と反映
     function SetUserLanguageAndReload(nextLang: string){
-        SetLocalStorage("userLanguage", nextLang);
+        SetLocalStorage(UserSaveDataValues.Language, nextLang);
 
-        const menuNum  = GetLocalStorage<MenuKind>("nowContent",MenuKindValues.TopPage);
+        const menuNum  = GetLocalStorage<MenuKind>(UserSaveDataValues.NowContent,MenuKindValues.TopPage);
         const allFlags = Object.values(TopPageReloadSetting).reduce((acc, val) => acc | val, 0);
         window.AddToChangeContentWithButton(menuNum, allFlags);
     }

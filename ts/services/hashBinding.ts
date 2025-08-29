@@ -1,7 +1,7 @@
-import { GetLocalStorage, SetLocalStorage } from "@util/localStorageWrapper";
+import { GetLocalStorage, UserSaveDataValues } from "@util/localStorageWrapper";
 import React from "react";
 import { createRoot, Root } from "react-dom/client";
-import { SelectableLanguageValues } from "ts/src/websiteModule";
+import { ColorThemeValues, SelectableLanguageValues } from "ts/src/websiteModule";
 import type { SelectableLanguage, ColorTheme } from "ts/src/websiteModule";
 import type { LoadFunction } from "../interface/componentTemplate";
 
@@ -18,8 +18,8 @@ export class HashBinding {
     }
 
     private AppProvide(): ProvidedProps{
-        const language   = GetLocalStorage<SelectableLanguage>("userLanguage", SelectableLanguageValues.Japanese);
-        const colorTheme = GetLocalStorage<ColorTheme>("userColorTheme","lightMode");
+        const language   = GetLocalStorage<SelectableLanguage>(UserSaveDataValues.Language, SelectableLanguageValues.Japanese);
+        const colorTheme = GetLocalStorage<ColorTheme>(UserSaveDataValues.ColorTheme,ColorThemeValues.LightMode);
         return { language, colorTheme };
     }
 

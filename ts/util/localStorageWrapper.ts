@@ -1,5 +1,12 @@
-export function GetLocalStorage<T extends number | string | boolean>(key: string, defaultValue: T): T{
-    const item = localStorage.getItem(key);
+export const UserSaveDataValues = {
+    Language: "userLanguage",
+    ColorTheme: "userColorTheme",
+    NowContent: "nowContent",
+}as const;
+type UserSaveData = typeof UserSaveDataValues[keyof typeof UserSaveDataValues];
+
+export function GetLocalStorage<T extends number | string | boolean>(userSaveData: UserSaveData, defaultValue: T): T{
+    const item = localStorage.getItem(userSaveData);
     if(item == null) return defaultValue;
 
     if(typeof defaultValue === "number"){
@@ -16,17 +23,17 @@ export function GetLocalStorage<T extends number | string | boolean>(key: string
     return item as T;
 }
 
-export function SetLocalStorage<T extends number | string | boolean>(key: string, value: T): void{
+export function SetLocalStorage<T extends number | string | boolean>(userSaveData: UserSaveData, value: T): void{
     if(typeof value === "number"){
-        localStorage.setItem(key, String(value));
+        localStorage.setItem(userSaveData, String(value));
         return;
     }
     if(typeof value === "string"){
-        localStorage.setItem(key, value);
+        localStorage.setItem(userSaveData, value);
         return;
     }
     if(typeof value === "boolean"){
-        localStorage.setItem(key, value ? "true" : "false");
+        localStorage.setItem(userSaveData, value ? "true" : "false");
         return;
     }
     throw new Error(`値を格納できませんでした：${typeof value}`);

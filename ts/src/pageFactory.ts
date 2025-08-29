@@ -5,9 +5,9 @@ import { MyPastimePage } from "../page/myPastime";
 import { ContactFormPage }  from "../page/contactForm";
 
 //Factory Patternを組む
-export const PageFactory = Object.freeze({
+export const PageFactory = {
   [MenuKindValues.TopPage]: () => new TopPage(),
   [MenuKindValues.DescriptionPage]: () => new DescriptionPage(),
   [MenuKindValues.MyPastimePage]: () => new MyPastimePage(),
   [MenuKindValues.ContactFormPage]: () => new ContactFormPage(),
-});
+} as const;

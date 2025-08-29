@@ -1,4 +1,4 @@
-import { GetLocalStorage, SetLocalStorage } from "@util/localStorageWrapper";
+import { GetLocalStorage, SetLocalStorage, UserSaveDataValues } from "@util/localStorageWrapper";
 import { SetBaseFunction } from "../interface/componentTemplate";
 import { TopPageReloadSetting } from "../page/topPage";
 import { ColorTheme, ColorThemeValues, MenuKind, MenuKindValues } from "../src/websiteModule";
@@ -8,7 +8,7 @@ function ColorThemeToggleComponent(): null{
     //初期設定 mounted
     React.useEffect(() => {
         const button = document.querySelector("#colorThemeToggleButton");
-        const colorTheme = GetLocalStorage<ColorTheme>("userColorTheme","lightMode");
+        const colorTheme = GetLocalStorage<ColorTheme>(UserSaveDataValues.ColorTheme,ColorThemeValues.LightMode);
         if (colorTheme === ColorThemeValues.DarkMode) {
             button?.classList.add("is-night");
             document.body.classList.add(ColorThemeValues.DarkMode);
@@ -36,7 +36,7 @@ function ColorThemeToggleComponent(): null{
     //イベント
     const onChange = () : void => {
         const button = document.getElementById("colorThemeToggleButton");
-        const colorTheme = GetLocalStorage<ColorTheme>("userColorTheme","lightMode");
+        const colorTheme = GetLocalStorage<ColorTheme>(UserSaveDataValues.ColorTheme,ColorThemeValues.LightMode);
 
         if (colorTheme === ColorThemeValues.DarkMode) {
             button?.classList.remove("is-night");
@@ -50,10 +50,10 @@ function ColorThemeToggleComponent(): null{
     };
 
     //設定と反映
-    function SetUserColorThemeAndReload(nextTheme: string){
-        SetLocalStorage("userColorTheme", nextTheme);
+    function SetUserColorThemeAndReload(nextTheme: string): void{
+        SetLocalStorage(UserSaveDataValues.ColorTheme, nextTheme);
 
-        const menuNum  = GetLocalStorage<MenuKind>("nowContent", MenuKindValues.TopPage);
+        const menuNum  = GetLocalStorage<MenuKind>(UserSaveDataValues.NowContent, MenuKindValues.TopPage);
         const allFlags = Object.values(TopPageReloadSetting).reduce((acc, val) => acc | val, 0);
         window.AddToChangeContentWithButton(menuNum, allFlags);
     }

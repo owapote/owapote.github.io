@@ -3,7 +3,7 @@ import { SelectableLanguageValues } from "../src/websiteModule";
 import { TopPageReloadSetting } from "../page/topPage";
 import { SetBaseFunction } from "../interface/componentTemplate";
 import React, { JSX } from "react";
-import { GetLocalStorage } from "@util/localStorageWrapper";
+import { GetLocalStorage, UserSaveDataValues } from "@util/localStorageWrapper";
 import type { HeaderNavData, HeaderNavItem } from "@contracts/headerNavContracts";
 import { FetchJson } from "@util/jsonLoader";
 
@@ -14,7 +14,7 @@ let _headerNavCache: HeaderNavData | null = null;
 function HeaderNavComponent(): JSX.Element {
     const [headerNavData, setHeaderNavData] = React.useState<HeaderNavData | null>(null);
 
-    const language : SelectableLanguage = GetLocalStorage("userLanguage", SelectableLanguageValues.Japanese);        
+    const language = GetLocalStorage<SelectableLanguage>(UserSaveDataValues.Language, SelectableLanguageValues.Japanese);
 
     React.useEffect(()=>{
         if(_headerNavCache){
@@ -51,7 +51,10 @@ function HeaderNavComponent(): JSX.Element {
     );
 }
 
-async function LoadHeaderNav(){
+/**
+ * ヘッダーの読み込みをする
+ */
+async function LoadHeaderNav(): Promise<void>{
     try {
         const data = await FetchJson<HeaderNavData>(HEADER_NAV_URL);
         _headerNavCache = data;

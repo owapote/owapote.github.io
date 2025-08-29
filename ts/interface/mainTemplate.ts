@@ -1,4 +1,4 @@
-import { GetLocalStorage } from "@util/localStorageWrapper";
+import { GetLocalStorage, UserSaveDataValues } from "@util/localStorageWrapper";
 import { SelectableLanguageValues } from "../src/websiteModule";
 import type { SelectableLanguage } from "../src/websiteModule";
 
@@ -41,7 +41,7 @@ export class MainTemplate{
         let language;
 
         //初期設定
-        language = GetLocalStorage<SelectableLanguage>("userLanguage", SelectableLanguageValues.Japanese);
+        language = GetLocalStorage<SelectableLanguage>(UserSaveDataValues.Language, SelectableLanguageValues.Japanese);
         if(!language) language = SelectableLanguageValues.Japanese;
         else {
             const selector = document.querySelector<HTMLSelectElement>("#languageSelector");
