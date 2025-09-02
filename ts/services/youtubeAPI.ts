@@ -1,12 +1,23 @@
 import { FetchJson } from "@util/jsonLoader";
 
-//youtubeAPIから帰ってくる型を定義しておく
+//youtubeAPIから返ってくる型のうち、必要なものを明示しておく
 type YouTubePlaylistItemsResponse = {
     items: Array<{
         snippet: {
             resourceId: { 
                 videoId: string
             };
+        };
+    }>;
+};
+
+type YouTubeVideoStatusResponse = {
+    items: Array<{
+        id: string;
+        statistics: {
+            viewCount?: string;
+            likeCount?: string;
+            commentCount?: string;
         };
     }>;
 };
@@ -28,14 +39,18 @@ export class YouTubeAPI{
         const uniqueId = "owapote0914"; //名前+ランダム付与されたID(discord的な)
 
         //YouTube Data APIのURLを構築
-        const apiUrl = `https://${worksName}.${uniqueId}.workers.dev/?maxResults=${maxResults}&playlistId=${playlistId}`;
-
-        const data = await FetchJson<YouTubePlaylistItemsResponse>(apiUrl);
+        const baseUrl = `https://${worksName}.${uniqueId}.workers.dev`;
+        const apiUrl = new URL("/playlistitems", baseUrl); //再生リスト取得に設定
+        apiUrl.searchParams.set("maxResults", String(maxResults));
+        apiUrl.searchParams.set("playlistId", playlistId);
+        const data = await FetchJson<YouTubePlaylistItemsResponse>(apiUrl.toString());
 
         const iframes: HTMLIFrameElement[] = new Array();
+        let videoIds: string[] = new Array();
         data.items.forEach(item => {
             //動画のIDを取得
             const videoId = item.snippet.resourceId.videoId;
+            videoIds.push(videoId);
 
             //ショート動画の要素を決定
             let iframe = document.createElement('iframe');
@@ -51,6 +66,7 @@ export class YouTubeAPI{
             iframes.push(iframe);
         });
 
+
         //キャッシュ化
         this.iframeCaches.set(playlistId,iframes);
         //初回表示
@@ -60,7 +76,7 @@ export class YouTubeAPI{
     /**
      * GetYouTubePlayListVideo()で取得した動画をHTMLに追加する
      * @param {*} playlistId 再生リストのID
-     * @param {*} containerId タグのID
+     * @param {*} containerId タグのID(先頭の#は不要)
      * @returns v
      */
     AppendIframesToContainer(playlistId: string, containerId: string): void {
